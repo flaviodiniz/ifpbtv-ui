@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #404C51;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  @media (min-width: 1200px) {
+    .container {
+      width: 1170px;
+      margin: 0 auto;
+    }
+  }
+
+  .cartoes {
+    width: 120px;
+    text-align: center;
+  }
+  
+  .acoes {
+    width: 240px;
+    text-align: center;
+  }

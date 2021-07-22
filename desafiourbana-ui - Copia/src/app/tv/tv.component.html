@@ -1,0 +1,44 @@
+<div class="container">
+    <div style="text-align:center">
+        <h1>
+            {{editandoTv ? 'EDITAR ' : 'NOVA'}} TV
+        </h1>
+    </div>
+
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Local</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="local" class="campo" [(ngModel)]="tv.local">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Modelo</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="modelo" class="campo" [(ngModel)]="tv.modelo">
+            </div>
+        </div>
+
+        <div class="p-formgroup-inline" style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label for="perfis">Marca</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <p-dropdown [options]="marcas" name="marca" placeholder="Selecione" [(ngModel)]="tv.marca" ></p-dropdown>
+            </div>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <button class="btn-salvar" pButton type="submit" label="Salvar" ></button>
+                <button style="margin-left: 20px;" class="btn-cancelar" routerLink="/tvs" pButton label="Cancelar"></button>
+            </div>
+        </div>
+    </form>
+
+</div>

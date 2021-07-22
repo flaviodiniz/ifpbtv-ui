@@ -1,0 +1,35 @@
+.logo{
+  width: 100px;
+  height: 130px;
+  left: 45px; position: relative;
+  top: 10px;
+}
+
+.navbar-item:hover{
+  background-color: #1CA65B;
+}
+.navbar-item{
+  padding: 10px;
+  list-style: none;
+}
+
+.navbar-item a{
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  margin-top: 0px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+
+  background-color:  #b4bbb7 ;
+
+  list-style: none;
+}
+

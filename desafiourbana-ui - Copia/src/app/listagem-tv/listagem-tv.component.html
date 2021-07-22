@@ -1,0 +1,69 @@
+<div class="container" >
+    <div style="text-align:center">
+        <h1>
+            LISTA DE TV'S
+        </h1>
+        <div style="margin: 30px; float: right;">
+            <button class="btn-salvar" pButton type="button" label="Nova TV"  (click)="goToTvNovo()" ></button>
+        </div>
+    </div>
+    <!-- (ngSubmit)="salvar(f)" -->
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="getTvs()">
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Local</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="local" class="campo" [(ngModel)]="local">
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <button class="btn-salvar" pButton type="submit" label="Pesquisar" ></button>
+                <button style="margin-left: 20px;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
+            </div>
+        </div>
+    </form>
+    <!-- <p-table [value]="tvs" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4"> -->
+        <!-- <ng-template pTemplate="caption">
+            Usuários
+        </ng-template> -->
+        <!-- <ng-template pTemplate="header">
+            <tr>
+                <th>Local</th>
+                <th>Chave</th>
+                <th>Disponibilidade</th>
+                <th>Modelo</th>
+                <th>Marca</th>
+                <th>Online</th>
+                <th>Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-tv>
+            <tr>
+                <td>{{tv.local}}</td>
+                <td>{{tv.chave}}</td>
+                <td>{{tv.disponivel}}</td>
+                <td>{{tv.modelo}}</td>
+                <td>{{tv.marca}}</td>
+                <td>{{tv.online}}</td>
+                <td>
+                    <a pButton pTooltip="Editar" tooltipPosition="top">
+                        <i class="pi pi-pencil" [routerLink]="['/tv', tv.id]"></i>                      
+                    </a>
+                    <button pButton style="margin-left: 15px;"
+                      pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(tv)">
+                        <i class="pi pi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-template>-->
+        <!-- <ng-template pTemplate="summary">
+            Footer
+        </ng-template> -->
+    <!-- </p-table>  -->
+
+
+
+</div>

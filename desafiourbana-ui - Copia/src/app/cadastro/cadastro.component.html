@@ -1,0 +1,74 @@
+<div class="container">
+    <div style="text-align:center">
+        <h1>
+            {{editandoUsuario ? 'EDITAR ' : 'NOVO'}} USUÁRIO
+        </h1>
+    </div>
+
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Nome</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="nome" class="campo" [(ngModel)]="usuario.nome">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>E-mail</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="email" class="campo" [(ngModel)]="usuario.email">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Matrícula</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="matricula" class="campo" [(ngModel)]="usuario.matricula">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Senha</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="senha" class="campo" [(ngModel)]="usuario.senha">
+            </div>
+        </div>
+
+        <div class="p-formgroup-inline" style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label for="perfis">Perfil</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="usuario.perfil" ></p-dropdown>
+                <!-- <p-dropdown id="perfis" name="perfil" [options]="perfis" optionLabel="perfil" class="campo" [(ngModel)]="usuario.perfil">
+                    <ng-template let-perfil pTemplate="item">
+                        <div class="perfil-item">
+                            <div>{{perfil}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown> -->
+            </div>
+
+            <!-- <div style="margin-top: 20px;">
+                <p-radioButton [inputId]="ativoSelecionado" name="ativoSelecionado" [(ngModel)]="ativoSelecionado" [disabled]="ativoSelecionado === 'Inativo'" [(ngModel)]="usuario.ativo"></p-radioButton>
+                <label style="color: green;">Ativo</label>
+            </div> -->
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <button class="btn-salvar" pButton type="submit" label="Salvar" ></button>
+                <button style="margin-left: 20px;" class="btn-cancelar" routerLink="/usuarios" pButton label="Cancelar"></button>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,105 @@
+<div class="container" >
+    <div style="text-align:center">
+        <h1>
+            LISTA DE MÍDIAS
+        </h1>
+        <div style="margin: 30px; float: right;">
+            <button class="btn-salvar" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
+        </div>
+    </div>
+    <!-- (ngSubmit)="getUsuarios()" -->
+    <form #f="ngForm" autocomplete="off" >
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Título</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="titulo" class="campo" [(ngModel)]="titulo">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Chave Especifica</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="chave" class="campo" [(ngModel)]="chave">
+            </div>
+        </div>
+
+        <div class="p-formgroup-inline" style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label for="tiposMidias">Tipo</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <p-dropdown [options]="tiposMidias" name="tipo" placeholder="Selecione" [(ngModel)]="tipo" ></p-dropdown>
+            </div>
+
+        </div>
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <button class="btn-salvar" pButton type="submit" label="Pesquisar" ></button>
+                <button style="margin-left: 20px;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
+            </div>
+        </div>
+    </form>
+    <!-- <p-table [value]="midias" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Título</th>
+                <th>Chave Especifica</th>
+                <th>Tipo</th>
+                <th>Link</th>
+                <th>Usuário</th>
+                <th>Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-midia>
+            <tr>
+                <td>{{midia.titulo}}</td>
+                <td>{{midia.chaveEspecifica}}</td>
+                <td>{{midia.tipoMidia}}</td>
+                <td>{{midia.link}}</td>
+                <td>{{midia.usuario.nome}}</td>
+                <td>
+                    <button pButton (click)="abrirModal(midia)" icon="pi pi-file"
+                    *ngIf="midia.tipoMidia != 'Streaming'"></button>-->
+                    <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button> -->
+                    <!--<a pButton style="margin-left: 15px;" pTooltip="Editar" tooltipPosition="top">
+                        <i class="pi pi-pencil" [routerLink]="['/midia', midia.id]"></i>                      
+                    </a>
+                    <button pButton style="margin-left: 15px;"
+                      pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(midia)">
+                        <i class="pi pi-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-template> 
+    </p-table> -->
+
+    <!-- <p-dialog header="Adicionar Arquivo" [(visible)]="openModal">
+        <p-fileUpload
+                      name="file"
+                      [url]="urlAnexo"
+                      chooseLabel="Anexar"
+                      uploadLabel="Enviar"
+                      cancelLabel="Cancelar"
+                      (onUpload)="onUpload($event)"
+                    > -->
+        <!--               accept="image/*" -->
+        <!--               maxFileSize="1000000" -->
+        <!--               (onError)="documentoInvalido($event.files[0])" -->
+        <!--               (onBeforeSend)="bloquearClique()" -->
+        <!--               <ng-template pTemplate="content">
+                        <div class="col-md-12">
+                          <ul *ngIf="file != null">
+                            <li>
+                              <a href=""> {{ file.name }} </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </ng-template>
+                    </p-fileUpload>
+    </p-dialog> -->
+
+</div>

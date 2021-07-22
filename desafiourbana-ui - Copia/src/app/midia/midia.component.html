@@ -1,0 +1,83 @@
+<div class="container">
+    <div style="text-align:center">
+        <h1>
+            {{editandoMidia ? 'EDITAR ' : 'NOVA'}} MÍDIA
+        </h1>
+    </div>
+
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Título</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="titulo" class="campo" [(ngModel)]="midia.titulo">
+            </div>
+        </div>
+
+        <div style="margin: 30px;">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Chave</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="Chave" class="campo" [(ngModel)]="midia.chaveEspecifica">
+            </div>
+        </div>
+
+        <!-- <div fxLayout="row" fxLayoutAlign="none" style="margin: 30px;">
+            <div class="ui-g-4 ui-fluid" style="color: green;">
+                <label for="tiposMidias">Tipo</label>
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <p-dropdown [options]="tiposMidias" name="tipoMidia" placeholder="Selecione" [(ngModel)]="midia.tipoMidia" ></p-dropdown>
+            </div>
+            <div class="ui-g-4 ui-fluid" style="color: green;">
+                <label for="disponibilidade">Disponibilidade</label>
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <p-dropdown [options]="disponibilidade" name="disponibilidadeMidia" placeholder="Selecione" [(ngModel)]="midia.disponibilidadeMidia" ></p-dropdown>
+            </div>
+        </div> -->
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <div style="color: green;">
+                    <label for="tiposMidias">Tipo</label>
+                    <!-- <p-dropdown [options]="tiposMidias" name="tipoMidia" placeholder="Selecione" [(ngModel)]="midia.tipoMidia" ></p-dropdown> -->
+                    <label for="disponibilidade">Disponibilidade</label>
+                    <!-- <p-dropdown [options]="disponibilidade" name="disponibilidadeMidia" placeholder="Selecione" [(ngModel)]="midia.disponibilidadeMidia" ></p-dropdown>    -->
+                    <label for="disponibilidade">Chaves</label>
+                </div>  
+            </div>
+            <div fxFlex="10%">
+                <div style="color: green;">
+                    <!-- <label for="tiposMidias">Tipo</label> -->
+                    <p-dropdown [options]="tiposMidias" name="tipoMidia" placeholder="Selecione" [(ngModel)]="midia.tipoMidia" ></p-dropdown>
+                    <!-- <label for="disponibilidade">Disponibilidade</label> -->
+                    <p-dropdown [options]="disponibilidade" name="disponibilidadeMidia" placeholder="Selecione" [(ngModel)]="midia.disponibilidadeMidia" ></p-dropdown>
+                    <!-- <p-multiSelect [options]="chaves" [(ngModel)]="chavesSelecionadas" optionLabel="chave"></p-multiSelect> -->
+                </div>  
+            </div>
+        </div>
+
+        <!-- <div style="margin: 30px;" *ngIf="midia.tipoMidia == 'Imagem'">
+            <p-fileUpload name="myfile[]" url="./upload.php"></p-fileUpload>
+        </div> -->
+
+        <div style="margin: 30px;" *ngIf="midia.tipoMidia == 'Streaming'">
+            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                <label>Link</label>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <input pInputText type="text" name="link" class="campo" [(ngModel)]="midia.link">
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%">
+                <button class="btn-salvar" pButton type="submit" label="Salvar" ></button>
+                <button style="margin-left: 20px;" class="btn-cancelar" routerLink="/midias" pButton label="Cancelar"></button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
