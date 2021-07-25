@@ -3,7 +3,7 @@ import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Form, FormControl } from '@angular/forms';
-import { Usuario } from '../models/model';
+import { Perfil, Usuario } from '../models/model';
 import { ToastyService } from 'ng2-toasty';
 //import { AlertService } from 'ngx-alerts';
 
@@ -35,8 +35,12 @@ export class CadastroComponent implements OnInit {
 
   getPerfis() {
     this.usuarioService.getPerfis().then(dados => {
-      console.log(dados);
-      this.perfis = dados;
+      dados.forEach(element => {
+        let per = new Perfil;
+        per.label = element;
+        per.value = element;
+        this.perfis.push(per);
+      });
     });
   }
 
@@ -56,6 +60,7 @@ export class CadastroComponent implements OnInit {
   }
 
   salvar(form: Form) {
+    console.log(this.usuario)
       if (this.editandoUsuario) {
         this.atualizarUsuario(form);
       } else {
@@ -81,10 +86,11 @@ export class CadastroComponent implements OnInit {
         this.usuario = usuario;
         this.usuario = new Usuario();
         //this.alertService.success('Usuário editado com sucesso!');
-        this.router.navigate(['tvs']);          
+        this.router.navigate(['/usuarios']);          
       })
       .catch(erro =>{
         console.log(erro);
       });
   }
+  
 }

@@ -39,6 +39,7 @@ import { TvComponent } from './tv/tv.component';
 import { UsuarioService } from './services/usuario.service';
 import { TvService } from './services/tv.service';
 import { MidiaService } from './services/midia.service';
+import { ContentComponent } from './content/content.component';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -63,7 +64,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     MenuComponent,
     MidiaComponent,
     NaoAutorizadoComponent,
-    TvComponent
+    TvComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,

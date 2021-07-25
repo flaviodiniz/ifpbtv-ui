@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 import { Midia } from '../models/model';
 
@@ -9,7 +10,7 @@ export class MidiaService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(
-    private http: HttpClient
+    private http: Http
   ) { }
 
   getTiposMidia(): Promise<any> {
@@ -64,7 +65,7 @@ export class MidiaService {
   }
 
   atualizarMidia(midia: any): Promise<any> {
-    return this.http.put<any>(`${this.baseUrl}/midias/${midia.id}`, midia)
+    return this.http.put(`${this.baseUrl}/midias/${midia.id}`, midia)
       .toPromise()
       .then(response => {
         const usuarioEditado = response;
@@ -73,18 +74,18 @@ export class MidiaService {
   }
 
   excluir(id: any){ 
-    return this.http.delete<any>(`${this.baseUrl}/midias/${id}`)
+    return this.http.delete(`${this.baseUrl}/midias/${id}`)
     .toPromise()
     .then(response => {
       return response;
     });
   }
 
-  buscarPorCodigo(codigo: number): Promise<Midia> {
+  buscarPorCodigo(codigo: number): Promise<any> {
     return this.http.get(`${this.baseUrl}/midias/${codigo}`)
       .toPromise()
       .then(response => {
-        const midia = response as Midia;
+        const midia = response;
         return midia;
       });
   }

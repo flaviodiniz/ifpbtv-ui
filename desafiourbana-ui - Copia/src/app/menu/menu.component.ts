@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ErroHandlerService } from 'app/core/erro-handler.service';
+import { LogoutService } from 'app/seguranca/logout.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private logoutService: LogoutService,
+    private errorHandler: ErroHandlerService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  logout() {
+    this.logoutService.logout()
+      .then(() => {
+        this.router.navigate(['/login']);
+      })
+      .catch(erro => this.errorHandler.handle(erro));
+  }
+
 
 }
