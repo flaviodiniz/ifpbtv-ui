@@ -32,7 +32,8 @@
                 <label for="perfis">Perfil</label>
             </div>
             <div class="ui-g-12 ui-md-9 ui-fluid">
-                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil" ></p-dropdown>
+                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil" optionLabel="descricao" ></p-dropdown>
+                <!-- <p-dropdown [options]="perfis" [(ngModel)]="perfil"></p-dropdown> -->
             </div>
 
         </div>
