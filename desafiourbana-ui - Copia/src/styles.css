@@ -1,26 +1,40 @@
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #404C51;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  @media (min-width: 1200px) {
-    .container {
-      width: 1170px;
-      margin: 0 auto;
-    }
-  }
 
-  .cartoes {
-    width: 120px;
-    text-align: center;
+html, body { height: 100%; }
+body { margin: 0; background-color: #E0E3E7; font-family: Arial, Helvetica, sans-serif; }
+
+.navegacao{
+    width: 14%;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    overflow-x: hidden;
+    background-color: #b4bbb7 !important; 
+}
+
+.conteudo{
+    width: 86%;
+    height: 100%;
+    top: 0%;
+    display: inline-block;
+}
+
+label {
+  font-weight: bold;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+    margin: 0 auto;
   }
-  
-  .acoes {
-    width: 240px;
-    text-align: center;
-  }
+}
+
+.cartoes {
+  width: 120px;
+  text-align: center;
+}
+
+.acoes {
+  width: 240px;
+  text-align: center;
+}

@@ -46,3 +46,8 @@ export class Login{
   usuario?: string;
   senha?: string;
 }
+
+export class Perfil{
+  label?: string;
+  value?: string;
+}

@@ -24,6 +24,7 @@ export class LoginComponent {
       .catch(erro => {
         this.errorHandler.handle(erro);
       });
-  }
+
+    }
 
 }

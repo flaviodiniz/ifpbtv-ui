@@ -1,15 +1,19 @@
 <div class="container" >
-    <div style="text-align:center">
-        <h1>
+    <div style="text-align:center;">
+        <h1 style="color: green;">
             LISTA DE USUÁRIOS
         </h1>
-        <div style="margin: 30px; float: right;">
-            <button class="btn-salvar" pButton type="button" label="Novo Usuário"  (click)="goToUsuarioNovo()" ></button>
+        <div style="margin: 2%; float: right; margin-top: 0%;">
+            <button class="btn-salvar" style="background-color: green;" pButton type="button" label="Novo Usuário"  (click)="goToUsuarioNovo()" ></button>
         </div>
     </div>
+
+    <!-- <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil" ></p-dropdown> -->
+
+    <div style="margin-top: 5%;">
     <!-- (ngSubmit)="salvar(f)" -->
     <form #f="ngForm" autocomplete="off" (ngSubmit)="getUsuarios()">
-        <div style="margin: 30px;">
+        <div style="margin: 2%;">
             <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
                 <label>Nome</label>
             </div>
@@ -18,7 +22,7 @@
             </div>
         </div>
 
-        <div style="margin: 30px;">
+        <div style="margin: 2%;">
             <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
                 <label>Matrícula</label>
             </div>
@@ -27,57 +31,43 @@
             </div>
         </div>
 
-        <div class="p-formgroup-inline" style="margin: 30px;">
+        <div style="margin: 2%;">
             <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
                 <label for="perfis">Perfil</label>
             </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil" ></p-dropdown>
+            <div class="ui-g-12 ui-md-9">
+                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil"></p-dropdown>
             </div>
+        </div>
+
+        <div style="margin-left: 2%; width: 100%; display: inline-block;" >
+
+            <div style="color: green; width: 12%;">
+                <button style="background-color: green; width: 100%;" pButton type="submit" label="Pesquisar" ></button>
+            </div>
+            <div style="float: right; width: 88%; margin-top: -3%;">
+                <button style="margin-left: 2%;background-color: #b4bbb7;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
+            </div>      
 
         </div>
-        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
-            <div fxFlex="10%">
-                <button class="btn-salvar" pButton type="submit" label="Pesquisar" ></button>
-                <button style="margin-left: 20px;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
-            </div>
-        </div>
+
     </form>
-    <!-- <p-table [value]="usuarios" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4"> -->
-        <!-- <ng-template pTemplate="caption">
-            Usuários
-        </ng-template> -->
-        <!-- <ng-template pTemplate="header">
-            <tr>
-                <th>Nome</th>
-                <th>Matricula</th>
-                <th>Perfil</th>
-                <th>Ativo</th>
-                <th>Ações</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-usuario>
-            <tr>
-                <td>{{usuario.nome}}</td>
-                <td>{{usuario.matricula}}</td>
-                <td>{{usuario.perfil}}</td>
-                <td>{{usuario.status}}</td>
-                <td>
-                    <a pButton pTooltip="Editar" tooltipPosition="top">
-                        <i class="pi pi-pencil" [routerLink]="['/usuario', usuario.id]"></i>                      
-                    </a>
-                    <button pButton style="margin-left: 15px;"
-                      pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(usuario)">
-                        <i class="pi pi-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        </ng-template> -->
-        <!-- <ng-template pTemplate="summary">
-            Footer
-        </ng-template> -->
-    <!-- </p-table> -->
+</div>
 
+<p-dataTable [value]="usuarios" [paginator]="true" [rows]="3" [responsive]="true"
+      emptyMessage="Nenhum usuário encontrado" #tabela>
+        <p-column field="nome" header="Nome"></p-column>
+        <p-column field="matricula" header="Matrícula"></p-column>
+        <p-column field="perfil" header="Perfil"></p-column>
+        <p-column field="status" header="Ativo"></p-column>
 
+        <p-column styleClass="acoes" header="Ações">
+          <ng-template let-usuario="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/usuario', usuario.id]"></a>
+            <button pButton icon="fa-trash" label="excluir" (click)="confirmarExclusao(usuario)"></button>
+          </ng-template>
+      </p-column>
+
+      </p-dataTable>
 
 </div>

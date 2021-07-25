@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 import { TV } from '../models/model';
 
@@ -9,7 +10,7 @@ export class TvService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(
-    private http: HttpClient
+    private http: Http
   ) { }
 
   getMarcas(): Promise<any> {
@@ -58,7 +59,7 @@ export class TvService {
   }
 
   atualizarTv(tv: any): Promise<any> {
-    return this.http.put<any>(`${this.baseUrl}/tvs/${tv.id}`, tv)
+    return this.http.put(`${this.baseUrl}/tvs/${tv.id}`, tv)
       .toPromise()
       .then(response => {
         const tvEditado = response;
@@ -67,7 +68,7 @@ export class TvService {
   }
 
   excluir(id: any){ 
-    return this.http.delete<any>(`${this.baseUrl}/tvs/${id}`)
+    return this.http.delete(`${this.baseUrl}/tvs/${id}`)
     .toPromise()
     .then(response => {
       return response;

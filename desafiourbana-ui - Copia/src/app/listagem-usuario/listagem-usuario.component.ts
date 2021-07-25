@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
-import { Usuario } from '../models/model';
+import { Perfil, Usuario } from '../models/model';
 import { UsuarioService } from '../services/usuario.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class ListagemUsuarioComponent implements OnInit {
   usuarios: any;
   nome: any; 
   matricula: any; 
-  perfil: any;
+  perfil: Perfil;
 
   constructor(
     //private alertService: AlertService,
@@ -27,14 +27,19 @@ export class ListagemUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.perfil = null;
     this.getPerfis();
     this.getUsuarios();
   }
 
   getPerfis() {
     this.usuarioService.getPerfis().then(dados => {
-      console.log(dados);
-      this.perfis = dados;
+      dados.forEach(element => {
+        let per = new Perfil;
+        per.label = element;
+        per.value = element;
+        this.perfis.push(per);
+      });
     });
   }
 
@@ -48,8 +53,8 @@ export class ListagemUsuarioComponent implements OnInit {
     if (this.perfil == null || this.perfil == '') {
       this.perfil = undefined;
     }
+
     this.usuarioService.getUsuarios(this.nome, this.matricula, this.perfil).then(dados => {
-      console.log(dados);
       this.usuarios = dados;
     });
   }
@@ -57,7 +62,7 @@ export class ListagemUsuarioComponent implements OnInit {
   limpar() {
     this.nome = ''; 
     this.matricula = ''; 
-    this.perfil = '';
+    this.perfil = null;
   }
 
   goToUsuarioNovo() {
@@ -83,7 +88,5 @@ export class ListagemUsuarioComponent implements OnInit {
       })
       .catch((erro: any) => console.log(erro));
   }
-
-
   
 }
