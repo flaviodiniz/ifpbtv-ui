@@ -1,4 +1,5 @@
 <div class="container" >
+
     <div style="text-align:center;">
         <h1 style="color: green;">
             LISTA DE USUÁRIOS
@@ -8,53 +9,51 @@
         </div>
     </div>
 
-    <!-- <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil" ></p-dropdown> -->
-
-    <div style="margin-top: 5%;">
-    <!-- (ngSubmit)="salvar(f)" -->
-    <form #f="ngForm" autocomplete="off" (ngSubmit)="getUsuarios()">
-        <div style="margin: 2%;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label>Nome</label>
+    <div style="margin-top: 5%; margin-bottom: 1%;">
+    
+        <form #f="ngForm" autocomplete="off" (ngSubmit)="getUsuarios()">
+            <div style="margin: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label>Nome</label>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-fluid">
+                    <input pInputText type="text" name="nome" class="campo" [(ngModel)]="nome">
+                </div>
             </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <input pInputText type="text" name="nome" class="campo" [(ngModel)]="nome">
+
+            <div style="margin: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label>Matrícula</label>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-fluid">
+                    <input pInputText type="text" name="matricula" class="campo" [(ngModel)]="matricula">
+                </div>
             </div>
-        </div>
 
-        <div style="margin: 2%;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label>Matrícula</label>
+            <div style="margin: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label for="perfis">Perfil</label>
+                </div>
+                <div class="ui-g-12 ui-md-9">
+                    <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil"></p-dropdown>
+                </div>
             </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <input pInputText type="text" name="matricula" class="campo" [(ngModel)]="matricula">
+
+            <div style="margin-left: 2%; width: 100%; display: inline-block;" >
+
+                <div style="color: green; width: 12%;">
+                    <button style="background-color: green; width: 100%;" pButton type="submit" label="Pesquisar" ></button>
+                </div>
+                <div style="float: right; width: 88%; margin-top: -3%;">
+                    <button style="margin-left: 2%;background-color: #b4bbb7;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
+                </div>      
+
             </div>
-        </div>
 
-        <div style="margin: 2%;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label for="perfis">Perfil</label>
-            </div>
-            <div class="ui-g-12 ui-md-9">
-                <p-dropdown [options]="perfis" name="perfil" placeholder="Selecione" [(ngModel)]="perfil"></p-dropdown>
-            </div>
-        </div>
+        </form>
+    </div>
 
-        <div style="margin-left: 2%; width: 100%; display: inline-block;" >
-
-            <div style="color: green; width: 12%;">
-                <button style="background-color: green; width: 100%;" pButton type="submit" label="Pesquisar" ></button>
-            </div>
-            <div style="float: right; width: 88%; margin-top: -3%;">
-                <button style="margin-left: 2%;background-color: #b4bbb7;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
-            </div>      
-
-        </div>
-
-    </form>
-</div>
-
-<p-dataTable [value]="usuarios" [paginator]="true" [rows]="3" [responsive]="true"
+    <p-dataTable [value]="usuarios" [paginator]="true" [rows]="3" [responsive]="true"
       emptyMessage="Nenhum usuário encontrado" #tabela>
         <p-column field="nome" header="Nome"></p-column>
         <p-column field="matricula" header="Matrícula"></p-column>
@@ -63,11 +62,11 @@
 
         <p-column styleClass="acoes" header="Ações">
           <ng-template let-usuario="rowData" pTemplate="body">
-            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/usuario', usuario.id]"></a>
+            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/usuarios', usuario.id]"></a>
             <button pButton icon="fa-trash" label="excluir" (click)="confirmarExclusao(usuario)"></button>
           </ng-template>
-      </p-column>
+        </p-column>
 
-      </p-dataTable>
+    </p-dataTable>
 
 </div>

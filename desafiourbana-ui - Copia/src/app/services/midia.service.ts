@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt';
 import { environment } from 'environments/environment';
 import { Midia } from '../models/model';
 
@@ -10,13 +10,13 @@ export class MidiaService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(
-    private http: Http
+    private http: AuthHttp
   ) { }
 
   getTiposMidia(): Promise<any> {
     return this.http.get(`${this.baseUrl}/midias/getTiposMidia`) 
       .toPromise()
-      .then(response => { return response })
+      .then(response => { return response.json(); })
       .catch(erro => {
         return Promise.reject(`Erro ao listar tipos de mídia.`);
       });
@@ -25,7 +25,7 @@ export class MidiaService {
   getDisponibilidadeMidia(): Promise<any> {
     return this.http.get(`${this.baseUrl}/midias/getDisponibilidadeMidia`) 
       .toPromise()
-      .then(response => { return response })
+      .then(response => { return response.json(); })
       .catch(erro => {
         return Promise.reject(`Erro ao listar disponibilidades da mídia.`);
       });
@@ -34,7 +34,7 @@ export class MidiaService {
   getChaves(): Promise<any> {
     return this.http.get(`${this.baseUrl}/midias/getChaves`) 
       .toPromise()
-      .then(response => { return response })
+      .then(response => { return response.json(); })
       .catch(erro => {
         return Promise.reject(`Erro ao listar Chaves da mídia.`);
       });
@@ -44,7 +44,7 @@ export class MidiaService {
     return this.http.post(`${this.baseUrl}/midias`, midia)
     .toPromise()
     .then(response => {
-      return response;
+      return response.json();
     })
     .catch(erro =>{
       console.log(erro);
@@ -53,11 +53,12 @@ export class MidiaService {
   }
 
   getMidias(titulo: any, chave: any, tipo: any): Promise<any> {
+    console.log(titulo, chave, tipo)
     return this.http.get(`${this.baseUrl}/midias/${titulo}/${chave}/${tipo}`) 
       .toPromise()
       .then(response => { 
-        console.log(response);
-        return response 
+      //  console.log(response.json());
+        return response.json();
       })
       .catch(erro => {
         return Promise.reject(`Erro ao listar mídias.`);
@@ -68,7 +69,7 @@ export class MidiaService {
     return this.http.put(`${this.baseUrl}/midias/${midia.id}`, midia)
       .toPromise()
       .then(response => {
-        const usuarioEditado = response;
+        const usuarioEditado = response.json();;
         return usuarioEditado;
       });
   }
@@ -77,7 +78,7 @@ export class MidiaService {
     return this.http.delete(`${this.baseUrl}/midias/${id}`)
     .toPromise()
     .then(response => {
-      return response;
+      return response.json();;
     });
   }
 
@@ -85,7 +86,7 @@ export class MidiaService {
     return this.http.get(`${this.baseUrl}/midias/${codigo}`)
       .toPromise()
       .then(response => {
-        const midia = response;
+        const midia = response.json();;
         return midia;
       });
   }

@@ -4,7 +4,7 @@
             LISTA DE MÍDIAS
         </h1>
         <div style="margin: 30px; float: right;">
-            <button class="btn-salvar" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
+            <button class="btn-salvar" class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
         </div>
     </div>
     <!-- (ngSubmit)="getUsuarios()" -->
@@ -36,13 +36,32 @@
             </div>
 
         </div>
-        <div fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
-            <div fxFlex="10%">
-                <button class="btn-salvar" pButton type="submit" label="Pesquisar" ></button>
-                <button style="margin-left: 20px;" class="btn-cancelar" pButton label="Limpar" (click)="limpar()" ></button>
-            </div>
-        </div>
+        <!-- <div class="ui-g-12 ui-md-9" fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
+            <div fxFlex="10%"> -->
+                <button class="ui-button-success" pButton type="submit" label="Pesquisar" ></button>
+                <button style="margin-left: 20px;" class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
+            <!-- </div>
+        </div> -->
     </form>
+
+    <p-dataTable [value]="midias" [paginator]="true" [rows]="3" [responsive]="true"
+      emptyMessage="Nenhuma mídia encontrada" #tabela>
+
+        <p-column field="titulo" header="Título"></p-column>
+        <p-column field="chave" header="Chave"></p-column>
+        <p-column field="tipo" header="Tipo"></p-column>
+        <p-column field="link" header="Link"></p-column>
+        <p-column field="usuario" header="Usuário"></p-column>
+
+        <p-column styleClass="acoes" header="Ações">
+          <ng-template let-midia="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/midias', midia.id]"></a>
+            <button pButton icon="fa-trash" label="excluir" (click)="confirmarExclusao(midia)"></button>
+          </ng-template>
+        </p-column>
+
+    </p-dataTable>
+
     <!-- <p-table [value]="midias" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4">
         <ng-template pTemplate="header">
             <tr>

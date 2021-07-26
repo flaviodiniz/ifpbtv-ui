@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-//import { AlertService } from 'ngx-alerts';
-import { TV } from '../models/model';
+import { ToastyService } from 'ng2-toasty';
+import { Marca, TV } from '../models/model';
 import { TvService } from '../services/tv.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class TvComponent implements OnInit {
   tv = new TV();
 
   constructor(
-    //private alertService: AlertService,
+    private toasty: ToastyService,
     private route: ActivatedRoute, 
     private router: Router,  
     private tvService: TvService,
@@ -44,8 +44,12 @@ export class TvComponent implements OnInit {
 
   getPerfis() {
     this.tvService.getMarcas().then(dados => {
-      console.log(dados);
-      this.marcas = dados;
+      dados.forEach(element => {
+        let per = new Marca;
+        per.label = element;
+        per.value = element;
+        this.marcas.push(per);
+      });
     });
   }
 
@@ -65,9 +69,9 @@ export class TvComponent implements OnInit {
     await this.tvService.SalvarTv(this.tv)
       .then(tvCadastrado => {
         if (tvCadastrado.status == 400) {
-          //this.alertService.danger(tvCadastrado.error.mensagem);
+          this.toasty.error(tvCadastrado.error.mensagem);
         } else {
-          //this.alertService.success('TV salva com sucesso!');
+          this.toasty.success('TV salva com sucesso!');
           this.router.navigate(['tvs']);
         }
       });
@@ -78,7 +82,7 @@ export class TvComponent implements OnInit {
       .then(tv => {
         this.tv = tv;
         this.tv = new TV();
-        //this.alertService.success('TV editada com sucesso!');
+        this.toasty.success('TV editada com sucesso!');
         this.router.navigate(['tvs']);          
       })
       .catch(erro =>{

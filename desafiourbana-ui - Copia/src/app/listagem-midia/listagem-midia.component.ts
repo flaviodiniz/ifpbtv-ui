@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TipoMidia } from 'app/models/model';
 import { environment } from 'environments/environment';
+import { ToastyService } from 'ng2-toasty';
 //import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MidiaService } from '../services/midia.service';
@@ -23,10 +25,10 @@ export class ListagemMidiaComponent implements OnInit {
   urlUpload = `${environment.apiUrl}/upload`; 
 
   constructor(
-    //private alertService: AlertService,
     private confirmation: ConfirmationService,
     private midiaService: MidiaService,
     private router: Router,
+    private toasty: ToastyService
   ) { }
 
   ngOnInit(): void {
@@ -34,10 +36,14 @@ export class ListagemMidiaComponent implements OnInit {
     this.getMidias();
   }
 
-  listarTipos(){
+  listarTipos() {
     this.midiaService.getTiposMidia().then(dados => {
-      console.log(dados);
-      this.tiposMidias = dados;
+      dados.forEach(element => {
+        let per = new TipoMidia;
+        per.label = element;
+        per.value = element;
+        this.tiposMidias.push(per);
+      });
     });
   }
 
@@ -58,7 +64,7 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   goToMidiaNova(){
-    this.router.navigate(['midia/nova']);
+    this.router.navigate(['midias/nova']);
   }
 
   limpar() {
@@ -79,7 +85,7 @@ export class ListagemMidiaComponent implements OnInit {
   excluir(midia: any) {
     this.midiaService.excluir(midia.id)
       .then(() => {
-        //this.alertService.success('Mídia excluida com sucesso!'); 
+        this.toasty.success('Mídia excluida com sucesso!'); 
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));
@@ -107,6 +113,6 @@ export class ListagemMidiaComponent implements OnInit {
       console.log(this.file);
       location.reload();
     }
-//this.alertService.success('Arquivo salvo com sucesso!');
+this.toasty.success('Arquivo salvo com sucesso!');
   }
 }

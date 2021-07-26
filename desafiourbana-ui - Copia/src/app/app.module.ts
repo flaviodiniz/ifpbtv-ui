@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
-import { DataTableModule } from 'primeng/components/datatable/datatable';
+//import { DataTableModule } from 'primeng/components/datatable/datatable';
 import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
@@ -40,6 +40,8 @@ import { UsuarioService } from './services/usuario.service';
 import { TvService } from './services/tv.service';
 import { MidiaService } from './services/midia.service';
 import { ContentComponent } from './content/content.component';
+
+import {DataTableModule,SharedModule} from 'primeng/primeng';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -76,6 +78,7 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     InputTextModule,
     ButtonModule,
     DataTableModule,
+    SharedModule,
     TooltipModule,
     DropdownModule,
     AppRoutingModule,

@@ -1,8 +1,8 @@
 
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { environment } from 'environments/environment';
 import { TV } from '../models/model';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class TvService {
@@ -10,13 +10,13 @@ export class TvService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(
-    private http: Http
+    private http: AuthHttp
   ) { }
 
   getMarcas(): Promise<any> {
     return this.http.get(`${this.baseUrl}/tvs/marcas`) 
       .toPromise()
-      .then(response => { return response })
+      .then(response => { return response.json(); })
       .catch(erro => {
         return Promise.reject(`Erro ao listar marcas.`);
       });
@@ -29,7 +29,7 @@ export class TvService {
     return this.http.post(`${this.baseUrl}/tvs`, tv)
     .toPromise()
     .then(response => {
-      return response;
+      return response.json();
     })
     .catch(erro =>{
       console.log(erro);
@@ -41,8 +41,8 @@ export class TvService {
     return this.http.get(`${this.baseUrl}/tvs/all/${local}`) 
       .toPromise()
       .then(response => { 
-        console.log(response);
-        return response 
+      //  console.log(response.json());
+        return response.json(); 
       })
       .catch(erro => {
         return Promise.reject(`Erro ao listar tvs.`);
@@ -53,7 +53,7 @@ export class TvService {
     return this.http.get(`${this.baseUrl}/tvs/${codigo}`)
       .toPromise()
       .then(response => {
-        const tv = response as TV;
+        const tv = response.json() as TV;
         return tv;
       });
   }
@@ -62,7 +62,7 @@ export class TvService {
     return this.http.put(`${this.baseUrl}/tvs/${tv.id}`, tv)
       .toPromise()
       .then(response => {
-        const tvEditado = response;
+        const tvEditado = response.json();;
         return tvEditado;
       });
   }
@@ -71,7 +71,7 @@ export class TvService {
     return this.http.delete(`${this.baseUrl}/tvs/${id}`)
     .toPromise()
     .then(response => {
-      return response;
+      return response.json();;
     });
   }
   

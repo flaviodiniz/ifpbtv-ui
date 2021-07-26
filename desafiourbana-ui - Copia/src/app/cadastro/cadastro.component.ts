@@ -2,10 +2,9 @@
 import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Form, FormControl } from '@angular/forms';
+import { Form } from '@angular/forms';
 import { Perfil, Usuario } from '../models/model';
 import { ToastyService } from 'ng2-toasty';
-//import { AlertService } from 'ngx-alerts';
 
 @Component({
   selector: 'app-cadastro',
@@ -18,10 +17,10 @@ export class CadastroComponent implements OnInit {
   usuario = new Usuario();
 
   constructor(
-    //private alertService: AlertService,
     private route: ActivatedRoute, 
     private router: Router,  
     private usuarioService: UsuarioService,
+    private toasty: ToastyService
   ) { }
 
   ngOnInit(): void {
@@ -72,9 +71,9 @@ export class CadastroComponent implements OnInit {
     await this.usuarioService.SalvarUsuario(this.usuario)
       .then(usuarioCadastrado => {
         if (usuarioCadastrado.status == 400) {
-          //this.alertService.danger(usuarioCadastrado.error.mensagem);
+          this.toasty.error(usuarioCadastrado.error.mensagem);
         } else {
-          //this.alertService.success('Usuário salvo com sucesso!');
+          this.toasty.success('Usuário salvo com sucesso!');
           this.router.navigate(['usuarios']);
         }
       });
@@ -85,7 +84,7 @@ export class CadastroComponent implements OnInit {
       .then(usuario => {
         this.usuario = usuario;
         this.usuario = new Usuario();
-        //this.alertService.success('Usuário editado com sucesso!');
+        this.toasty.success('Usuário editado com sucesso!');
         this.router.navigate(['/usuarios']);          
       })
       .catch(erro =>{

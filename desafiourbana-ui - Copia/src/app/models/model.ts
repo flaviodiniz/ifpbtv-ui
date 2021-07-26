@@ -51,3 +51,14 @@ export class Perfil{
   label?: string;
   value?: string;
 }
+
+export class Marca{
+  label?: string;
+  value?: string;
+}
+
+export class TipoMidia{
+  label?: string;
+  value?: string;
+}
+

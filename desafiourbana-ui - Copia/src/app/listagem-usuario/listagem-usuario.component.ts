@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 //import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { Perfil, Usuario } from '../models/model';
@@ -20,7 +21,7 @@ export class ListagemUsuarioComponent implements OnInit {
   perfil: Perfil;
 
   constructor(
-    //private alertService: AlertService,
+    private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private router: Router,
     private usuarioService: UsuarioService,
@@ -66,7 +67,7 @@ export class ListagemUsuarioComponent implements OnInit {
   }
 
   goToUsuarioNovo() {
-    this.router.navigate(['usuario/novo']);
+    this.router.navigate(['usuarios/novo']);
   }
 
   confirmarExclusao(usuario: any) {
@@ -83,7 +84,7 @@ export class ListagemUsuarioComponent implements OnInit {
   excluir(usuario: any) {
     this.usuarioService.excluir(usuario.id)
       .then(() => {
-        //this.alertService.success('Usuário excluido com sucesso!'); 
+        this.toasty.success('Usuário excluido com sucesso!'); 
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));

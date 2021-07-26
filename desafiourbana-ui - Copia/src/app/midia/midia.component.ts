@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastyService } from 'ng2-toasty';
 //import { AlertService } from 'ngx-alerts';
 import { Chave, Midia, Usuario } from '../models/model';
 import { MidiaService } from '../services/midia.service';
@@ -20,7 +21,7 @@ export class MidiaComponent implements OnInit {
 
   constructor (
     private route: ActivatedRoute, 
-    //private alertService: AlertService,
+    private toasty: ToastyService,
     private midiaService: MidiaService,
     private router: Router, 
   ) { }
@@ -89,9 +90,9 @@ export class MidiaComponent implements OnInit {
     await this.midiaService.SalvarMidia(this.midia)
       .then(midiaCadastrado => {
         if (midiaCadastrado.status == 400) {
-          //this.alertService.danger(midiaCadastrado.error.mensagem);
+          this.toasty.error(midiaCadastrado.error.mensagem);
         } else {
-          //this.alertService.success('Mídia salva com sucesso!');
+          this.toasty.success('Mídia salva com sucesso!');
           this.router.navigate(['midias']);
         }
       });
@@ -102,7 +103,7 @@ export class MidiaComponent implements OnInit {
       .then(midia => {
         this.midia = midia;
         this.midia = new Midia();
-        //this.alertService.success('Usuário editado com sucesso!');
+        this.toasty.success('Usuário editado com sucesso!');
         this.router.navigate(['midias']);          
       })
       .catch(erro =>{

@@ -14,15 +14,22 @@ import { ListagemUsuarioComponent } from './listagem-usuario/listagem-usuario.co
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'midia/nova' , component: MidiaComponent},
-  { path: 'midia/:id' , component: MidiaComponent},
-  { path: 'midias' , component: ListagemMidiaComponent},
-  { path: 'tv/nova' , component: TvComponent},
-  { path: 'tv/:id' , component: TvComponent},
-  { path: 'tvs' , component: ListagemTvComponent},
-  { path: 'usuario/novo', component: CadastroComponent },
-  { path: 'usuario/:id' , component: CadastroComponent},
-  { path: 'usuarios' , component: ListagemUsuarioComponent},
+  { path: 'midias' , children: [
+    { path: '' , component: ListagemMidiaComponent},
+    { path: ':id', component: MidiaComponent }, 
+    { path: 'nova', component: MidiaComponent }
+  ]},
+  { path: 'tvs' , children: [
+    { path: '' , component: ListagemTvComponent },
+    { path: ':id' , component: TvComponent},
+    { path: 'nova' , component: TvComponent},
+  ]},
+  
+  { path: 'usuarios' , children: [
+    { path: '' , component: ListagemUsuarioComponent },
+    { path: 'novo', component: CadastroComponent },
+    { path: ':id' , component: CadastroComponent},
+  ]},
 
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoTrocadaComponent },
