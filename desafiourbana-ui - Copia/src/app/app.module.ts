@@ -12,6 +12,8 @@ import { TooltipModule } from 'primeng/components/tooltip/tooltip';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/api';
+import { MultiSelectModule } from 'primeng/primeng';
+
 
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -83,7 +85,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     DropdownModule,
     AppRoutingModule,
     ToastyModule.forRoot(),
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    MultiSelectModule
   ],
   providers: [ConfirmationService, 
     ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService,

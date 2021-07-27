@@ -36,6 +36,7 @@ export class Midia{
 export class Chave{
   id?: number;
   chave?: string;
+  label?: string;
 }
 
 export class Token{
@@ -58,6 +59,11 @@ export class Marca{
 }
 
 export class TipoMidia{
+  label?: string;
+  value?: string;
+}
+
+export class Disponibilidade{
   label?: string;
   value?: string;
 }

@@ -1,66 +1,79 @@
-<div class="container" >
+<div class="container">
+
     <div style="text-align:center">
-        <h1>
+        <h1 style="color: green;">
             LISTA DE MÍDIAS
         </h1>
-        <div style="margin: 30px; float: right;">
-            <button class="btn-salvar" class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
-        </div>
     </div>
-    <!-- (ngSubmit)="getUsuarios()" -->
+    <div style="margin: 2%; float: right;">
+        <button class="btn-salvar" class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
+    </div>
+
     <form #f="ngForm" autocomplete="off" >
-        <div style="margin: 30px;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label>Título</label>
+
+        <div style="margin-left: 0%; display: inline-block; margin-bottom: 1%; width: 100%; ">
+
+            <div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label>Título</label>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-fluid">
+                    <input pInputText type="text" name="titulo" class="campo" [(ngModel)]="titulo">
+                </div>
             </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <input pInputText type="text" name="titulo" class="campo" [(ngModel)]="titulo">
+
+            <div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label>Chave Especifica</label>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-fluid">
+                    <input pInputText type="text" name="chave" class="campo" [(ngModel)]="chave">
+                </div>
+            </div>
+
+            <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
+                <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                    <label for="tiposMidias">Tipo</label>
+                </div>
+                <div class="ui-g-12 ui-md-9 ui-fluid">
+                    <p-dropdown [options]="tiposMidias" name="tipo" placeholder="Selecione" [(ngModel)]="tipo" ></p-dropdown>
+                </div>
             </div>
         </div>
 
-        <div style="margin: 30px;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label>Chave Especifica</label>
-            </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <input pInputText type="text" name="chave" class="campo" [(ngModel)]="chave">
-            </div>
-        </div>
-
-        <div class="p-formgroup-inline" style="margin: 30px;">
-            <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label for="tiposMidias">Tipo</label>
-            </div>
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <p-dropdown [options]="tiposMidias" name="tipo" placeholder="Selecione" [(ngModel)]="tipo" ></p-dropdown>
-            </div>
-
-        </div>
-        <!-- <div class="ui-g-12 ui-md-9" fxLayout="row" fxLayoutAlign=" none" style="margin: 30px;">
-            <div fxFlex="10%"> -->
+        <div style="margin-left: 3%; display: inline-block; margin-bottom: 1%; ">
+            <div style="display: inline-block;">
                 <button class="ui-button-success" pButton type="submit" label="Pesquisar" ></button>
-                <button style="margin-left: 20px;" class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
-            <!-- </div>
-        </div> -->
+            </div>
+            <div style="display: inline-block;">
+                <button class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
+            </div>
+        </div>
+        
     </form>
 
-    <p-dataTable [value]="midias" [paginator]="true" [rows]="3" [responsive]="true"
-      emptyMessage="Nenhuma mídia encontrada" #tabela>
+    <!-- <div> -->
 
-        <p-column field="titulo" header="Título"></p-column>
-        <p-column field="chave" header="Chave"></p-column>
-        <p-column field="tipo" header="Tipo"></p-column>
-        <p-column field="link" header="Link"></p-column>
-        <p-column field="usuario" header="Usuário"></p-column>
+        <p-dataTable [value]="midias" [paginator]="true" [rows]="3" [responsive]="true"
+            emptyMessage="Nenhuma mídia encontrada" #tabela>
 
-        <p-column styleClass="acoes" header="Ações">
-          <ng-template let-midia="rowData" pTemplate="body">
-            <a pButton icon="fa-pencil" label="editar" [routerLink]="['/midias', midia.id]"></a>
-            <button pButton icon="fa-trash" label="excluir" (click)="confirmarExclusao(midia)"></button>
-          </ng-template>
-        </p-column>
+            <p-column field="titulo" header="Título"></p-column>
+            <p-column field="chaveEspecifica" header="Chave"></p-column>
+            <p-column field="tipoMidia" header="Tipo"></p-column>
+            <p-column field="link" header="Link"></p-column>
+            <p-column field="usuario.nome" header="Usuário"></p-column>
 
-    </p-dataTable>
+            <p-column styleClass="acoes" header="Ações">
+            <ng-template let-midia="rowData" pTemplate="body">
+                <a pButton icon="fa-pencil" class="ui-button-success" label="editar" [routerLink]="['/midias', midia.id]"></a>
+                <button pButton icon="fa-trash" class="ui-button-success" label="excluir" (click)="confirmarExclusao(midia)"></button>
+            </ng-template>
+            </p-column>
+
+        </p-dataTable>
+        
+</div>
+    <!-- </div> -->
 
     <!-- <p-table [value]="midias" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4">
         <ng-template pTemplate="header">
@@ -121,4 +134,3 @@
                     </p-fileUpload>
     </p-dialog> -->
 
-</div>

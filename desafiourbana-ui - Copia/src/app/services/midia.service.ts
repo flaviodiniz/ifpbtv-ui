@@ -34,7 +34,10 @@ export class MidiaService {
   getChaves(): Promise<any> {
     return this.http.get(`${this.baseUrl}/midias/getChaves`) 
       .toPromise()
-      .then(response => { return response.json(); })
+      .then(response => { 
+        console.log(response.json())
+        return response.json(); 
+      })
       .catch(erro => {
         return Promise.reject(`Erro ao listar Chaves da mídia.`);
       });
@@ -47,7 +50,7 @@ export class MidiaService {
       return response.json();
     })
     .catch(erro =>{
-      console.log(erro);
+      console.log(erro.json());
       return erro;
     });
   }
