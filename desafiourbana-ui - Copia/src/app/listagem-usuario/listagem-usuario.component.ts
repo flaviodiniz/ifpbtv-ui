@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'app/seguranca/auth.service';
 import { ToastyService } from 'ng2-toasty';
 //import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
@@ -21,6 +22,7 @@ export class ListagemUsuarioComponent implements OnInit {
   perfil: Perfil;
 
   constructor(
+    private auth: AuthService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private router: Router,
@@ -71,14 +73,17 @@ export class ListagemUsuarioComponent implements OnInit {
   }
 
   confirmarExclusao(usuario: any) {
-    console.log(usuario);
-
-    this.confirmation.confirm({
-      message: 'Tem certeza que deseja excluir?',
-      accept: () => {
-        this.excluir(usuario);
-      }
-    });
+    console.log(usuario, this.auth.jwtPayload);
+    if(usuario.id == this.auth.jwtPayload.id){
+      this.toasty.error("Você não pode se alto excluir! Solicite a outro usuário administrador.")
+    } else {
+      this.confirmation.confirm({
+        message: 'Tem certeza que deseja excluir?',
+        accept: () => {
+          this.excluir(usuario);
+        }
+      });
+    }
   }
 
   excluir(usuario: any) {

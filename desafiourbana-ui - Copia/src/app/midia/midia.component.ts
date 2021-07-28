@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'app/seguranca/auth.service';
 import { ToastyService } from 'ng2-toasty';
-//import { AlertService } from 'ngx-alerts';
 import { Chave, Disponibilidade, Midia, TipoMidia, Usuario } from '../models/model';
 import { MidiaService } from '../services/midia.service';
 
@@ -25,6 +25,7 @@ export class MidiaComponent implements OnInit {
   dpnibilidade = Disponibilidade;
 
   constructor (
+    private auth: AuthService,
     private route: ActivatedRoute, 
     private toasty: ToastyService,
     private midiaService: MidiaService,
@@ -104,7 +105,8 @@ export class MidiaComponent implements OnInit {
 
   async cadastrarMidia(form: Form) {
     let usuario = new Usuario();
-    usuario.id = 1;//deixar por enquanto que não tem usuario do login
+    //usuario.id = 1;//deixar por enquanto que não tem usuario do login
+    usuario.id = this.auth.jwtPayload.id;
     this.midia.usuario = usuario;
     this.midia.chaves = this.chavesSelecionadas;
     // this.midia.chaves.forEach(element => {

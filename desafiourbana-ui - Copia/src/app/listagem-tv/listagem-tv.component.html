@@ -1,11 +1,12 @@
 <div class="container">
+    
     <div style="text-align:center">
         <h1 style="color: green;">
             LISTA DE TV'S
         </h1>
         <div style="margin: 30px; float: right;">
             <button pButton type="button" label="Nova TV"  class="ui-button-success" (click)="goToTvNovo()" ></button>
-        </div>
+        </div> 
     </div>
 
     <form #f="ngForm" autocomplete="off" (ngSubmit)="getTvs()">
