@@ -68,3 +68,19 @@ export class Disponibilidade{
   value?: string;
 }
 
+export class Programacao{
+  id?: number;	
+	titulo?: string;
+	tipoProgramacao?: string;
+	horarioInicio?: string;
+	horarioFim?: string;
+	diaSemana?: string;
+  dataCriacao?: Date;
+  playList = new Array<Midia>();
+}
+
+export class TipoProgramacao{
+  label?: string;
+  value?: string;
+}
+

@@ -10,10 +10,12 @@ import { TvComponent } from './tv/tv.component';
 import { ListagemTvComponent } from './listagem-tv/listagem-tv.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemUsuarioComponent } from './listagem-usuario/listagem-usuario.component';
+import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'programacao', component: ListagemProgramacaoComponent},
   { path: 'midias' , children: [
     { path: '' , component: ListagemMidiaComponent},
     { path: ':id', component: MidiaComponent }, 

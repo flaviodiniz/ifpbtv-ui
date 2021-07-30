@@ -9,7 +9,7 @@
         <button class="btn-salvar" class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
     </div>
 
-    <form #f="ngForm" autocomplete="off" >
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="getMidias()">
 
         <div style="margin-left: 0%; display: inline-block; margin-bottom: 1%; width: 100%; ">
 
@@ -52,7 +52,7 @@
         
     </form>
 
-    <!-- <div> -->
+    
 
         <p-dataTable [value]="midias" [paginator]="true" [rows]="3" [responsive]="true"
             emptyMessage="Nenhuma mídia encontrada" #tabela>
@@ -64,15 +64,37 @@
             <p-column field="usuario.nome" header="Usuário"></p-column>
 
             <p-column styleClass="acoes" header="Ações">
-            <ng-template let-midia="rowData" pTemplate="body">
-                <a pButton icon="fa-pencil" class="ui-button-success" label="editar" [routerLink]="['/midias', midia.id]"></a>
-                <button pButton icon="fa-trash" class="ui-button-success" label="excluir" (click)="confirmarExclusao(midia)"></button>
-            </ng-template>
+                <ng-template let-midia="rowData" pTemplate="body">
+                    <a pButton icon="fa-pencil" class="ui-button-success" [routerLink]="['/midias', midia.id]"></a>
+                    <button pButton icon="fa-trash" class="ui-button-success" (click)="confirmarExclusao(midia)"></button>
+                    <button pButton icon="fa-plus" (click)="showDialog(midia)" class="ui-button-success"></button>
+                </ng-template>
             </p-column>
 
         </p-dataTable>
         
 </div>
+
+<p-dialog header="Adicionar Arquivo" [(visible)]="display">
+    <p-fileUpload name="file" url="urlAnexo" multiple="multiple"
+        chooseLabel="Anexar" uploadLabel="Enviar" cancelLabel="Cancelar"
+        (onUpload)="onUpload($event)" accept="image/*" maxFileSize="1000000"
+        >
+        <!-- (onError)="documentoInvalido($event.files[0])"  -->
+        <!-- (onBeforeSend)="bloquearClique()" -->
+    </p-fileUpload>
+
+    <ng-template pTemplate="content">
+        <div class="col-md-12">
+            <ul *ngIf="file != null">
+                <li>
+                    <a href=""> {{ file.name }} </a>
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</p-dialog>
+
     <!-- </div> -->
 
     <!-- <p-table [value]="midias" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4">
@@ -109,28 +131,4 @@
         </ng-template> 
     </p-table> -->
 
-    <!-- <p-dialog header="Adicionar Arquivo" [(visible)]="openModal">
-        <p-fileUpload
-                      name="file"
-                      [url]="urlAnexo"
-                      chooseLabel="Anexar"
-                      uploadLabel="Enviar"
-                      cancelLabel="Cancelar"
-                      (onUpload)="onUpload($event)"
-                    > -->
-        <!--               accept="image/*" -->
-        <!--               maxFileSize="1000000" -->
-        <!--               (onError)="documentoInvalido($event.files[0])" -->
-        <!--               (onBeforeSend)="bloquearClique()" -->
-        <!--               <ng-template pTemplate="content">
-                        <div class="col-md-12">
-                          <ul *ngIf="file != null">
-                            <li>
-                              <a href=""> {{ file.name }} </a>
-                            </li>
-                          </ul>
-                        </div>
-                      </ng-template>
-                    </p-fileUpload>
-    </p-dialog> -->
-
+    

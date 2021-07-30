@@ -13,6 +13,8 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { ConfirmDialogModule } from 'primeng/components/confirmdialog/confirmdialog';
 import { ConfirmationService } from 'primeng/components/common/api';
 import { MultiSelectModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
+import { FileUploadModule } from 'primeng/primeng';
 
 
 import { ToastyModule } from 'ng2-toasty';
@@ -42,8 +44,9 @@ import { UsuarioService } from './services/usuario.service';
 import { TvService } from './services/tv.service';
 import { MidiaService } from './services/midia.service';
 import { ContentComponent } from './content/content.component';
-
+import { ProgramacaoService } from './services/programacao.service';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
+import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -69,7 +72,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     MidiaComponent,
     NaoAutorizadoComponent,
     TvComponent,
-    ContentComponent
+    ContentComponent,
+    ListagemProgramacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -86,11 +90,13 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     AppRoutingModule,
     ToastyModule.forRoot(),
     ConfirmDialogModule,
-    MultiSelectModule
+    MultiSelectModule,
+    DialogModule,
+    FileUploadModule
   ],
   providers: [ConfirmationService, 
-    ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService,
-    MidiaService, TvService, UsuarioService,
+    ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService, 
+    MidiaService, TvService, UsuarioService, ProgramacaoService,
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,

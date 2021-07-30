@@ -24,6 +24,8 @@ export class ListagemMidiaComponent implements OnInit {
   file: any;
   urlUpload = `${environment.apiUrl}/upload`; 
 
+  display: boolean = false;
+
   constructor(
     private confirmation: ConfirmationService,
     private midiaService: MidiaService,
@@ -91,8 +93,9 @@ export class ListagemMidiaComponent implements OnInit {
       .catch((erro: any) => console.log(erro));
   }
 
-  abrirModal(midia:any){
-    this.midia = midia.id;
+  abrirModal(midia: any){
+    console.log(midia)
+    this.midia = midia;
     this.openModal = true;
   }
 
@@ -101,6 +104,7 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   get urlAnexo(): string {
+    console.log("Houve get");
     return (
       this.urlUpload + `/` +
       this.midia
@@ -108,11 +112,21 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   onUpload(event: any) {
+    
     for (let filee of event.files) {
       this.file = filee;
       console.log(this.file);
       location.reload();
     }
-this.toasty.success('Arquivo salvo com sucesso!');
+
+    this.toasty.success('Arquivo salvo com sucesso!');
   }
+
+  showDialog(midia: any) {
+    console.log("Entrou no show dialog");
+    console.log("Mídia antes " + midia.id);
+    this.midia = midia.id;
+    this.display = true;
+  }
+
 }
