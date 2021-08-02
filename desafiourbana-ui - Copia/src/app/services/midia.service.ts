@@ -55,6 +55,18 @@ export class MidiaService {
     });
   }
 
+  SalvarUpload(midia: any, file: any): Promise<any>{
+    return this.http.post(`${this.baseUrl}/upload/${midia}`, file)
+    .toPromise()
+    .then(response => {
+      return response.json();
+    })
+    .catch(erro =>{
+      console.log(erro.json());
+      return erro;
+    });
+  }
+
   getMidias(titulo: any, chave: any, tipo: any): Promise<any> {
     console.log(titulo, chave, tipo)
     return this.http.get(`${this.baseUrl}/midias/${titulo}/${chave}/${tipo}`) 

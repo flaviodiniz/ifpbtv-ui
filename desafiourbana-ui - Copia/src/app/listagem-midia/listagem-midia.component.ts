@@ -23,6 +23,7 @@ export class ListagemMidiaComponent implements OnInit {
   midia: any;
   file: any;
   urlUpload = `${environment.apiUrl}/upload`; 
+  url: any;
 
   display: boolean = false;
 
@@ -93,9 +94,8 @@ export class ListagemMidiaComponent implements OnInit {
       .catch((erro: any) => console.log(erro));
   }
 
-  abrirModal(midia: any){
-    console.log(midia)
-    this.midia = midia;
+  abrirModal(midia:any){
+    this.midia = midia.id;
     this.openModal = true;
   }
 
@@ -104,23 +104,43 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   get urlAnexo(): string {
-    console.log("Houve get");
     return (
       this.urlUpload + `/` +
       this.midia
     );
   }
-
-  onUpload(event: any) {
     
-    for (let filee of event.files) {
-      this.file = filee;
-      console.log(this.file);
-      location.reload();
-    }
+  onUpload() {
+//     for (let filee of event.files) {
+//       this.file = filee;
+//       this.midiaService.SalvarUpload(this.midiaService, this.file)
+//       .then( res => {
+//         this.toasty.success('Arquivo salvo com sucesso!');
+//         location.reload();
+//       })
+//       .catch( erro => {
+//         this.toasty.error('Erro ao salvar arquivo!');
+//       });
+//      }
 
-    this.toasty.success('Arquivo salvo com sucesso!');
-  }
+    //  this.midiaService.SalvarUpload(this.midia, this.file)
+    //   .then( res => {
+    //     this.toasty.success('Arquivo salvo com sucesso!');
+    //     location.reload();
+    //   })
+    //   .catch( erro => {
+    //     this.toasty.error('Erro ao salvar arquivo!');
+    //   });
+
+  }
+
+uploadedFiles: any[] = [];
+
+onUpload2(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+}
 
   showDialog(midia: any) {
     console.log("Entrou no show dialog");
@@ -128,5 +148,9 @@ export class ListagemMidiaComponent implements OnInit {
     this.midia = midia.id;
     this.display = true;
   }
+
+  public onFileChanged(event) {
+        this.file = event.target.files[0];
+      }
 
 }

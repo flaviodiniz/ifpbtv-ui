@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 
 import { JwtHelper } from 'angular2-jwt';
 import 'rxjs/add/operator/toPromise';
+import { ToastyService } from 'ng2-toasty';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +14,9 @@ export class AuthService {
   jwtPayload: any;
 
   constructor(private http: Http,
-    private jwtHelper: JwtHelper
+    private jwtHelper: JwtHelper,
+    private router: Router,
+    private toasty: ToastyService
     ) {
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
     this.carregarToken();
@@ -67,6 +71,9 @@ export class AuthService {
       })
       .catch(response => {
         console.error('Erro ao renovar token.', response);
+        this.router.navigate(['/login']);
+        this.toasty.error('Sua sessão expirou!');
+        
         return Promise.resolve(null);
       });
   }
