@@ -50,7 +50,7 @@
             </div>
         </div>
         
-    </form>
+    
 
     
 
@@ -73,62 +73,43 @@
 
         </p-dataTable>
         
+
+        <div style="width: 100%;">
+
+        <p-dialog header="Adicionar Arquivo" [(visible)]="display">
+
+            <div class="container row">        
+                    <div class="col-md-12">       
+                        <h1>Upload Image</h1>        
+                    </div>        
+                </div>
+                
+                <div class="container row">        
+                    <div class="col-md-6">        
+                        <input type="file" (change)="onFileChanged($event)">        
+                    </div>
+                
+                    <div class="col-md-6">        
+                        <input type="button" (click)="onUpload()" value="upload">        
+                    </div>        
+                </div>
+                
+                <hr />
+                
+                <div class="container row">        
+                    <div class="col-md-12">        
+                        <div *ngIf=message>{{message}}</div>        
+                    </div>        
+                </div>
+
+        </p-dialog>
+
+    </div>
+
+    </form>
+
 </div>
 
-<p-dialog header="Adicionar Arquivo" [(visible)]="display">
-    <p-fileUpload name="file" url="urlAnexo" multiple="multiple"
-        chooseLabel="Anexar" uploadLabel="Enviar" cancelLabel="Cancelar"
-        (onUpload)="onUpload($event)" accept="image/*" maxFileSize="1000000"
-        >
-        <!-- (onError)="documentoInvalido($event.files[0])"  -->
-        <!-- (onBeforeSend)="bloquearClique()" -->
-    </p-fileUpload>
-
-    <ng-template pTemplate="content">
-        <div class="col-md-12">
-            <ul *ngIf="file != null">
-                <li>
-                    <a href=""> {{ file.name }} </a>
-                </li>
-            </ul>
-        </div>
-    </ng-template>
-</p-dialog>
-
-    <!-- </div> -->
-
-    <!-- <p-table [value]="midias" styleClass="p-datatable-gridlines" [paginator]="true" [rows]="4">
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Título</th>
-                <th>Chave Especifica</th>
-                <th>Tipo</th>
-                <th>Link</th>
-                <th>Usuário</th>
-                <th>Ações</th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-midia>
-            <tr>
-                <td>{{midia.titulo}}</td>
-                <td>{{midia.chaveEspecifica}}</td>
-                <td>{{midia.tipoMidia}}</td>
-                <td>{{midia.link}}</td>
-                <td>{{midia.usuario.nome}}</td>
-                <td>
-                    <button pButton (click)="abrirModal(midia)" icon="pi pi-file"
-                    *ngIf="midia.tipoMidia != 'Streaming'"></button>-->
-                    <!-- <button class="btn btn-outline-primary mb-2 mr-2" (click)="openBackDropCustomClass(content)">Modal with backdrop custom class</button> -->
-                    <!--<a pButton style="margin-left: 15px;" pTooltip="Editar" tooltipPosition="top">
-                        <i class="pi pi-pencil" [routerLink]="['/midia', midia.id]"></i>                      
-                    </a>
-                    <button pButton style="margin-left: 15px;"
-                      pTooltip="Excluir" tooltipPosition="top" (click)="confirmarExclusao(midia)">
-                        <i class="pi pi-trash"></i>
-                    </button>
-                </td>
-            </tr>
-        </ng-template> 
-    </p-table> -->
+   
 
     

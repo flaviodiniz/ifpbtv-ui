@@ -76,7 +76,7 @@ export class Programacao{
 	horarioFim?: string;
 	diaSemana?: string;
   dataCriacao?: Date;
-  playList = new Array<Midia>();
+  playlist = new Array<Midia>();
 }
 
 export class TipoProgramacao{

@@ -44,6 +44,7 @@ export class MidiaService {
   }
 
   SalvarMidia(midia: Midia): Promise<any>{
+    console.log(midia)
     return this.http.post(`${this.baseUrl}/midias`, midia)
     .toPromise()
     .then(response => {

@@ -25,8 +25,10 @@ export class ProgramacaoService {
     });
   }
 
-  getProgramacoes(): Promise<any> {
-    return this.http.get(`${this.baseUrl}/programacao/all`) 
+  getProgramacoes(titulo: any, tipoProgramacao: any): Promise<any> {
+    console.log(titulo)
+    console.log(tipoProgramacao)
+    return this.http.get(`${this.baseUrl}/programacao/listar/${titulo}/${tipoProgramacao}`) 
       .toPromise()
       .then(response => { 
         return response.json();
@@ -59,6 +61,15 @@ export class ProgramacaoService {
       .then(response => {
         const programacao = response.json();;
         return programacao;
+      });
+  }
+
+  getTiposProgramacao(): Promise<any> {
+    return this.http.get(`${this.baseUrl}/programacao/getTiposProgramacao`) 
+      .toPromise()
+      .then(response => { return response.json(); })
+      .catch(erro => {
+        return Promise.reject(`Erro ao listar tipos de programação.`);
       });
   }
 }

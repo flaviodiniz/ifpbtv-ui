@@ -15,7 +15,7 @@ import { ConfirmationService } from 'primeng/components/common/api';
 import { MultiSelectModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
-
+import { DataListModule } from 'primeng/primeng';
 
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -47,6 +47,7 @@ import { ContentComponent } from './content/content.component';
 import { ProgramacaoService } from './services/programacao.service';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
+import { ProgramacaoComponent } from './programacao/programacao.component';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -73,7 +74,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     NaoAutorizadoComponent,
     TvComponent,
     ContentComponent,
-    ListagemProgramacaoComponent
+    ListagemProgramacaoComponent,
+    ProgramacaoComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     ConfirmDialogModule,
     MultiSelectModule,
     DialogModule,
-    FileUploadModule
+    FileUploadModule,
+    DataListModule
   ],
   providers: [ConfirmationService, 
     ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService, 
