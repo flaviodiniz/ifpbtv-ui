@@ -38,6 +38,17 @@ export class ProgramacaoService {
       });
   }
 
+  getProgramacoesSemFiltro(): Promise<any> {
+    return this.http.get(`${this.baseUrl}/programacao/all`) 
+      .toPromise()
+      .then(response => { 
+        return response.json();
+      })
+      .catch(erro => {
+        return Promise.reject(`Erro ao listar programacao.`);
+      });
+  }
+
   atualizarProgramacao(programacao: any): Promise<any> {
     return this.http.put(`${this.baseUrl}/programacao/${programacao.id}`, programacao)
       .toPromise()
@@ -70,6 +81,18 @@ export class ProgramacaoService {
       .then(response => { return response.json(); })
       .catch(erro => {
         return Promise.reject(`Erro ao listar tipos de programação.`);
+      });
+  }
+
+  getImagensDaProgramacao(id: any): Promise<any> {
+    console.log(id)
+    return this.http.get(`${this.baseUrl}/programacao/listar/all/${id}`) 
+      .toPromise()
+      .then(response => { 
+        return response.json();
+      })
+      .catch(erro => {
+        return Promise.reject(`Erro ao listar programacao.`);
       });
   }
 }

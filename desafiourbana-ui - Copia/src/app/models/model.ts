@@ -84,3 +84,14 @@ export class TipoProgramacao{
   value?: string;
 }
 
+export class ProgUploadMidiaDTO{
+  id?: number;
+  arquivo?: any;
+  id_midia?: number;
+  titulo?: string; 
+  tipoMidia?: string; 
+  chaveEspecifica?: string; 
+  disponibilidadeMidia?: string; 
+  dataCriacao?: string;
+}
+

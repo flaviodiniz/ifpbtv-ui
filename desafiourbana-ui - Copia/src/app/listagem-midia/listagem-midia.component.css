@@ -1,0 +1,38 @@
+/* input[type="file" i] {
+    appearance: none;
+    cursor: default;
+    align-items: baseline;
+    color: rgb(87, 207, 87);
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+    overflow: hidden !important;
+    border-radius: 1%;
+    border-color: black;
+} */
+
+/* Esconde o input */
+input[type='file'] {
+    display: none
+}
+  
+/* Aparência que terá o seletor de arquivo */
+.legenda-btn {
+    background-color: #5cb85c;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 2%;
+    padding: 6px 20px
+}
+
+
+.ui-dropdown {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    width: 300px !important;
+}

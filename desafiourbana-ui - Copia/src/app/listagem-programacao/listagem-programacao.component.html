@@ -27,7 +27,8 @@
               <label for="tiposMidias">Tipo de Programação</label>
           </div>
           <div class="ui-g-12 ui-md-9 ui-fluid">
-              <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione" [(ngModel)]="programacao" ></p-dropdown>
+              <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione"
+              [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="programacao" ></p-dropdown>
           </div>
       </div>
 
@@ -45,24 +46,79 @@
         
 </form>
 
+<!-- <div style="width: 99%;"> -->
+
 <p-dataTable [value]="programacoes" [paginator]="true" [rows]="3" [responsive]="true"
     emptyMessage="Nenhuma programação encontrada" #tabela>
         
         <p-column field="titulo" header="Título"></p-column>
         <p-column field="tipoProgramacao" header="Tipo"></p-column>
-        <p-column field="duracao" header="Duração"></p-column>
+        <p-column field="horarioInicio" header="H. Início"></p-column>
+        <p-column field="horarioFim" header="H. Fim"></p-column>
+        <p-column field="diaSemana" header="Dia"></p-column>
+        <p-column field="playlist.length" header="Qtd mídias"></p-column>
         
-        <p-column styleClass="acoes" header="Editar">
+        <p-column styleClass="acoes" header="Mídia" >
             <ng-template let-prog="rowData" pTemplate="body">
-                <a pButton icon="fa-pencil" class="ui-button-success" label="editar" [routerLink]="['/programacao', prog.id]"></a>
+                <a pButton icon="fa-file" class="ui-button-success" 
+                (click)="getProgramacoes3(prog.id)"></a>
             </ng-template>
         </p-column>
-        <p-column styleClass="acoes" header="Excluir">
+        <p-column styleClass="acoes" header="Ações">
           <ng-template let-prog="rowData" pTemplate="body">
-            <button pButton icon="fa-trash" class="ui-button-success" type="button" label="excluir" (click)="confirmarExclusao(prog)"></button>
+            <a pButton icon="fa-pencil" class="ui-button-success" 
+            [routerLink]="['/programacao', prog.id]"></a>
+            <button pButton icon="fa-trash" class="ui-button-success" type="button" (click)="confirmarExclusao(prog)"></button>
           </ng-template>
       </p-column>
       
 </p-dataTable>
+
+<p-dialog [visible]="display" [width]="400" closable="false">
+
+    <p-header style="color: green;">
+        Mídias da Programação
+    </p-header>
+    
+    <p-dataList [value]="midias" [paginator]="true" [rows]="2">
+        <p-header [style]="{'color': 'green'}">
+            Lista de Mídias
+        </p-header>
+        <ng-template let-mid pTemplate="item">
+            <div class="ui-g ui-fluid car-item">
+                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                    <img [src]="recuperarImagem(mid.arquivo)" height="60px" width="60px">
+                </div>
+                <div class="ui-g-12 ui-md-9 car-details">
+                    <div class="ui-g">
+                        <div class="ui-g-2 ui-sm-6">Título: </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid.titulo }}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Chave: </div>
+                        <div class="ui-g-10 ui-sm-6">{{mid.chaveEspecifica}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Link: </div>
+                        <div class="ui-g-10 ui-sm-6">{{mid.id}}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6">Disponibilidade: </div>
+                        <div class="ui-g-10 ui-sm-6">{{mid}}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Adicionar: </div>
+                        <div class="ui-g-10 ui-sm-6">
+                          <button pButton class="ui-button-success" type="button" label="adicionar" (click)="adicionarMidia(mid)"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataList>
+
+    <p-footer>
+        <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="display=false" label="Ok"></button>
+    </p-footer>
+
+</p-dialog>
+
+<!-- </div> -->
 
 </div>   

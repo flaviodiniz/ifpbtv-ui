@@ -35,7 +35,6 @@ export class ListagemMidiaComponent implements OnInit {
   message: string;
   imageName: any;
 
-
   constructor(
     private confirmation: ConfirmationService,
     private midiaService: MidiaService,
@@ -119,6 +118,7 @@ export class ListagemMidiaComponent implements OnInit {
     console.log(event)
     //Select File
     this.selectedFile = event.target.files[0];
+    this.toasty.success('Arquivo selecionado!'); 
   }
   //Gets called when the user clicks on submit to upload the image
   onUpload() {
@@ -144,6 +144,7 @@ export class ListagemMidiaComponent implements OnInit {
     this.display = false;
     this.selectedFile = null;
     location.reload();
+    this.toasty.success('Arquivo salvo com sucesso!'); 
   }
 
     //Gets called when the user clicks on retieve image button to get the image from back end

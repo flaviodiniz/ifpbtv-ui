@@ -36,7 +36,8 @@
                     <label for="tiposMidias">Tipo</label>
                 </div>
                 <div class="ui-g-12 ui-md-9 ui-fluid">
-                    <p-dropdown [options]="tiposMidias" name="tipo" placeholder="Selecione" [(ngModel)]="tipo" ></p-dropdown>
+                    <p-dropdown [options]="tiposMidias" name="tipo" 
+                    [style]="{width: '30%', minWidth: '30%'}" placeholder="Selecione" [(ngModel)]="tipo" ></p-dropdown>
                 </div>
             </div>
         </div>
@@ -73,38 +74,60 @@
 
         </p-dataTable>
         
+        <div>
+        
+        <p-dialog [(visible)]="display"
+        [modal]="true"
+        [responsive]="true"
+        [width]="400"
+        [style]="{width: '200px', minWidth: '250px'}"
+        [contentStyle]="{minHeight: '200px', maxWidth: '400px'}">
 
-        <div style="width: 100%;">
-
-        <p-dialog header="Adicionar Arquivo" [(visible)]="display">
-
-            <div class="container row">        
-                    <div class="col-md-12">       
-                        <h1>Upload Image</h1>        
-                    </div>        
-                </div>
+        <p-header style="color: green;">
+            Adicionar arquivo
+        </p-header>
                 
-                <div class="container row">        
-                    <div class="col-md-6">        
-                        <input type="file" (change)="onFileChanged($event)">        
+            <!-- <div>                    
+                <div style="align-items: center; align-self: center;">        
+                    <div style="margin-bottom: 2%;">        
+                        <input id="choice" type="file" (change)="onFileChanged($event)">        
                     </div>
-                
-                    <div class="col-md-6">        
-                        <input type="button" (click)="onUpload()" value="upload">        
-                    </div>        
                 </div>
+            </div>        
+            <div style="margin-left: 40%; margin-right: 30%; margin-top: 30%;">        
+                <button pButton class="ui-button-success" (click)="onUpload()" label="Enviar"></button>
+            </div>        
                 
-                <hr />
-                
-                <div class="container row">        
-                    <div class="col-md-12">        
-                        <div *ngIf=message>{{message}}</div>        
-                    </div>        
-                </div>
+            <div>        
+                <div >        
+                    <div *ngIf=message>{{message}}</div>        
+                </div>        
+            </div> -->
 
-        </p-dialog>
+            <div style="margin-top: 10%; margin-left: 20%; margin-right: 20%;">
+                <label for="selecao-arquivo" class="legenda-btn">Selecionar um arquivo</label>
+                <input id="selecao-arquivo" type='file' (change)="onFileChanged($event)">
+            </div>
 
-    </div>
+            <!-- <div style="margin-left: 15%; margin-right: 30%; margin-top: 10%; align-self: center; align-content: center;"> -->
+            <div style="margin-left: 30%; margin-right: 40%; margin-top: 10%;">
+                <ul *ngIf="selectedFile != null">                    
+                    <p> {{ selectedFile.name }} </p>                    
+                </ul>
+            </div>   
+            
+            <p-footer>
+            
+                <!-- <div style="margin-left: 30%; margin-right: 30%; margin-top: 30%;">         -->
+                <div style="margin-right: 40%;">         
+                    <button pButton class="ui-button-success" (click)="onUpload()" label="Enviar" [disabled]="!selectedFile"></button>
+                </div>     
+            
+            </p-footer>             
+
+            </p-dialog>
+
+        </div>
 
     </form>
 
