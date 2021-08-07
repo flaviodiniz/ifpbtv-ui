@@ -126,7 +126,6 @@ export class ListagemMidiaComponent implements OnInit {
     const uploadImageData = new FormData();
     let headers = new Headers();
     const token = localStorage.getItem('token');
-       
     headers.append('Authorization', 'Bearer '+ token);
     let options = new RequestOptions({ headers: headers });
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
