@@ -56,8 +56,8 @@ export class MidiaService {
     });
   }
 
-  SalvarUpload(midia: any, imageFile: any): Promise<any>{
-    return this.http.post(`${this.baseUrl}/upload/${midia}`, imageFile)
+  SalvarUpload(midia: any, file: any): Promise<any>{
+    return this.http.post(`${this.baseUrl}/upload/${midia}`, file)
     .toPromise()
     .then(response => {
       return response.json();
@@ -94,7 +94,7 @@ export class MidiaService {
     return this.http.delete(`${this.baseUrl}/midias/${id}`)
     .toPromise()
     .then(response => {
-      return response.json();;
+      return response.json();
     });
   }
 
