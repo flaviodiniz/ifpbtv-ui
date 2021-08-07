@@ -132,15 +132,32 @@ export class ListagemMidiaComponent implements OnInit {
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     let url = `http://localhost:8080/upload/${this.midia}`;
 
-    this.http.post(url, uploadImageData, options)
-      .subscribe((response) => {
-        if (response.status === 200) {
-          this.message = 'Image uploaded successfully';
-        } else {
-          this.message = 'Image not uploaded successfully';
-        }
+    let formData:FormData = new FormData();
+    formData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    let headers2 = new Headers();
+    headers.append('Content-Type', 'multipart/form-data')
+    headers.append('Accept', 'application/json');
+    headers.append('Authorization', 'Bearer '+ token);
+    let options2 = new RequestOptions({ headers: headers });
+    this.http.post(url, formData, options2) 
+    .subscribe((response) => {
+      if (response.status === 200) {
+        this.message = 'Image uploaded successfully';
+      } else {
+        this.message = 'Image not uploaded successfully';
       }
-      );
+    }
+    );
+
+    // this.http.post(url, uploadImageData, options)
+    //   .subscribe((response) => {
+    //     if (response.status === 200) {
+    //       this.message = 'Image uploaded successfully';
+    //     } else {
+    //       this.message = 'Image not uploaded successfully';
+    //     }
+    //   }
+    //   );
     this.display = false;
     this.selectedFile = null;
     location.reload();
