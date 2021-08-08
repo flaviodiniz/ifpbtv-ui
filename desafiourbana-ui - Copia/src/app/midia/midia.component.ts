@@ -104,19 +104,19 @@ export class MidiaComponent implements OnInit {
     if (this.editandoMidia) {
       this.atualizarMidia(form);
     } else {
-      this.cadastrarMidia(form);
+      if(this.selectedFile == null){
+        this.toasty.error("É necessario adicionar o arquivo!")
+      } else {
+        this.cadastrarMidia(form);
+      }
     }
   }
 
   async cadastrarMidia(form: Form) {
     let usuario = new Usuario();
-    //usuario.id = 1;//deixar por enquanto que não tem usuario do login
     usuario.id = this.auth.jwtPayload.id;
     this.midia.usuario = usuario;
     this.midia.chaves = this.chavesSelecionadas;
-    // this.midia.chaves.forEach(element => {
-    //   console.log(element);
-    // });
     console.log(this.midia)
     await this.midiaService.SalvarMidia(this.midia)
       .then(midiaCadastrado => {
@@ -127,7 +127,6 @@ export class MidiaComponent implements OnInit {
           this.midiaId = midiaCadastrado.midia.id;
           this.onUpload();
           this.toasty.success('Mídia salva com sucesso!');
-          //this.router.navigate(['midias']);
         }
       });
   }
@@ -153,27 +152,18 @@ export class MidiaComponent implements OnInit {
   public onFileChanged(event) {
     this.selectedFile = event.target.files[0];
     this.toasty.success('Arquivo selecionado!'); 
+    this.display = false;
   }
 
   onUpload() {
     const token = localStorage.getItem('token');
     let formData:FormData = new FormData();
     formData.append('file', this.selectedFile, this.selectedFile.name);
-    this.midiaService.SalvarUpload(this.midia, formData, token)
+    this.midiaService.SalvarUpload(this.midiaId, formData, token)
     .then((response) => {
-      console.log(response);
-      let message;
-      if (response.status === 200) {
-        message = 'Image uploaded successfully';
-        this.toasty.success('Arquivo salvo com sucesso!'); 
-      } else {
-        message = 'Image not uploaded successfully';
-      }
+      this.toasty.success('Arquivo salvo com sucesso!'); 
+      this.router.navigate(['midias']);
     });
-    //this.display = false;
-    //this.selectedFile = null;
-    //location.reload();
-    this.toasty.success('Arquivo salvo com sucesso!'); 
   }
 
 }
