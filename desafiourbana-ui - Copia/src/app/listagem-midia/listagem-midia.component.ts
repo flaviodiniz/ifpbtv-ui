@@ -135,7 +135,7 @@ export class ListagemMidiaComponent implements OnInit {
     let formData:FormData = new FormData();
     formData.append('imageFile', this.selectedFile, this.selectedFile.name);
     let headers2 = new Headers();
-    headers.append('Content-Type', 'multipart/form-data')
+    // headers.append('Content-Type', 'multipart/form-data')
     headers.append('Accept', 'application/json');
     headers.append('Authorization', 'Bearer '+ token);
     let options2 = new RequestOptions({ headers: headers });
