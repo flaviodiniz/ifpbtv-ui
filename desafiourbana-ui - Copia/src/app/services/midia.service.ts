@@ -1,5 +1,6 @@
 
 import { Injectable } from '@angular/core';
+import { Headers, Http, RequestOptionsArgs } from '@angular/http';
 import { AuthHttp } from 'angular2-jwt';
 import { environment } from 'environments/environment';
 import { Midia } from '../models/model';
@@ -10,7 +11,8 @@ export class MidiaService {
   private baseUrl = `${environment.apiUrl}`;
 
   constructor(
-    private http: AuthHttp
+    private http: AuthHttp,
+    private http2: Http
   ) { }
 
   getTiposMidia(): Promise<any> {
@@ -56,8 +58,14 @@ export class MidiaService {
     });
   }
 
-  SalvarUpload(midia: any, file: any): Promise<any>{
-    return this.http.post(`${this.baseUrl}/upload/${midia}`, file)
+  SalvarUpload(midia: any, form: FormData, token: any): Promise<any>{
+    const headers = new Headers();
+    headers.append('Authorization', 'Bearer '+ token);
+    // headers.append('Content-Type','application/json');
+    // headers.append('Content-Type','multipart/form-data');
+    // headers.append('enctype','multipart/form-data');
+    const option:RequestOptionsArgs = { headers : headers };
+    return this.http2.post(`${this.baseUrl}/upload/${midia}`, form, option)
     .toPromise()
     .then(response => {
       return response.json();

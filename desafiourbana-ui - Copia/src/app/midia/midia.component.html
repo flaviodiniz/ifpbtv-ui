@@ -4,6 +4,9 @@
             {{editandoMidia ? 'EDITAR ' : 'NOVA'}} MÍDIA
         </h1>
     </div>
+    <div style="margin: 2%; float: right;">
+        <button pButton (click)="showDialog(midia)" class="ui-button-success" label="Adicionar Arquivo" ></button>
+    </div>
 
     <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
 
@@ -78,17 +81,39 @@
 
     </div>
 
-        
-  
-
     <div style="display: inline-block; margin-right: 60%; margin-left: 3%;">
         <div style="display: inline-block;">
-            <button class="btn-salvar" pButton type="submit" class="ui-button-success" label="Salvar" ></button>
+            <button class="btn-salvar" pButton type="submit" class="ui-button-success" label="Salvar" visible="selectedFile == null"></button>
         </div>
         <div style="display: inline-block;">
             <button class="ui-button-secondary" routerLink="/midias" pButton label="Cancelar"></button>
         </div>
-        
+    </div>
+
+    <div>
+        <p-dialog [(visible)]="display"
+        [modal]="true"
+        [responsive]="true"
+        [width]="400"
+        [style]="{width: '200px', minWidth: '250px'}"
+        [contentStyle]="{minHeight: '200px', maxWidth: '400px'}">
+
+            <p-header style="color: green;">
+                Adicionar arquivo
+            </p-header>
+
+            <div style="margin-top: 10%; margin-left: 20%; margin-right: 20%;">
+                <label for="selecao-arquivo" class="legenda-btn">Selecionar um arquivo</label>
+                <input id="selecao-arquivo" type='file' (change)="onFileChanged($event)">
+            </div>
+
+            <div style="margin-left: 30%; margin-right: 40%; margin-top: 10%;">
+                <ul *ngIf="selectedFile != null">                    
+                    <p> {{ selectedFile.name }} </p>                    
+                </ul>
+            </div>             
+
+        </p-dialog>
     </div>
 
 </form>

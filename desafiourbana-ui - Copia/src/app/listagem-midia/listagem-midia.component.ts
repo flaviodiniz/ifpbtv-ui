@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Headers, Http, RequestOptions} from '@angular/http';
 import { Router } from '@angular/router';
-import { AuthHttp } from 'angular2-jwt';
 import { TipoMidia } from 'app/models/model';
 import { AuthService } from 'app/seguranca/auth.service';
 import { environment } from 'environments/environment';
 import { ToastyService } from 'ng2-toasty';
-//import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MidiaService } from '../services/midia.service';
 
@@ -108,7 +106,6 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   showDialog(midia: any) {
-    console.log(midia)
     this.midia = midia.id;
     this.display = true;
   }
@@ -123,31 +120,31 @@ export class ListagemMidiaComponent implements OnInit {
   //Gets called when the user clicks on submit to upload the image
   onUpload() {
     console.log(this.selectedFile);
-    const uploadImageData = new FormData();
+    //const uploadImageData = new FormData();
     let headers = new Headers();
     const token = localStorage.getItem('token');
        
-    headers.append('Authorization', 'Bearer '+ token);
-    let options = new RequestOptions({ headers: headers });
-    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    //headers.append('Authorization', 'Bearer '+ token);
+    //let options = new RequestOptions({ headers: headers });
+    //uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     let url = `http://localhost:8080/upload/${this.midia}`;
 
     let formData:FormData = new FormData();
-    formData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    let headers2 = new Headers();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+    //let headers2 = new Headers();
     headers.append('Content-Type', 'multipart/form-data')
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Bearer '+ token);
+    // headers.append('Accept', 'application/json');
+    //headers.append('Authorization', 'Bearer '+ token);
     let options2 = new RequestOptions({ headers: headers });
-    this.http.post(url, formData, options2) 
-    .subscribe((response) => {
-      if (response.status === 200) {
-        this.message = 'Image uploaded successfully';
-      } else {
-        this.message = 'Image not uploaded successfully';
-      }
-    }
-    );
+    // this.http.post(url, formData, options2) 
+    // .subscribe((response) => {
+    //   if (response.status === 200) {
+    //     this.message = 'Image uploaded successfully';
+    //   } else {
+    //     this.message = 'Image not uploaded successfully';
+    //   }
+    // }
+    // );
 
     // this.http.post(url, uploadImageData, options)
     //   .subscribe((response) => {
@@ -158,10 +155,21 @@ export class ListagemMidiaComponent implements OnInit {
     //     }
     //   }
     //   );
-    this.display = false;
-    this.selectedFile = null;
-    location.reload();
-    this.toasty.success('Arquivo salvo com sucesso!'); 
+
+    this.file = this.selectedFile;
+    this.midiaService.SalvarUpload(this.midia, formData, token)
+    .then((response) => {
+      console.log(response);
+      if (response.status === 200) {
+        this.message = 'Image uploaded successfully';
+      } else {
+        this.message = 'Image not uploaded successfully';
+      }
+    });
+    //this.display = false;
+    //this.selectedFile = null;
+    //location.reload();
+    //this.toasty.success('Arquivo salvo com sucesso!'); 
   }
 
     //Gets called when the user clicks on retieve image button to get the image from back end

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Headers, RequestOptions} from '@angular/http';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'app/seguranca/auth.service';
@@ -17,6 +18,10 @@ export class MidiaComponent implements OnInit {
   tiposMidias = [];
   chaves = [];
   disponibilidade = [];
+  display: boolean = false;
+  midiaId;
+  selectedFile;
+  file: any;
   chavesSelecionadas: Chave[];
   midia = new Midia();
 
@@ -118,8 +123,11 @@ export class MidiaComponent implements OnInit {
         if (midiaCadastrado.status == 400) {
           this.toasty.error(midiaCadastrado.error.mensagem);
         } else {
+          console.log(midiaCadastrado);
+          this.midiaId = midiaCadastrado.midia.id;
+          this.onUpload();
           this.toasty.success('Mídia salva com sucesso!');
-          this.router.navigate(['midias']);
+          //this.router.navigate(['midias']);
         }
       });
   }
@@ -135,6 +143,37 @@ export class MidiaComponent implements OnInit {
       .catch(erro =>{
         console.log(erro);
       });
+  }
+
+  showDialog(midia: any) {
+    this.midiaId = midia.id;
+    this.display = true;
+  }
+
+  public onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+    this.toasty.success('Arquivo selecionado!'); 
+  }
+
+  onUpload() {
+    const token = localStorage.getItem('token');
+    let formData:FormData = new FormData();
+    formData.append('file', this.selectedFile, this.selectedFile.name);
+    this.midiaService.SalvarUpload(this.midia, formData, token)
+    .then((response) => {
+      console.log(response);
+      let message;
+      if (response.status === 200) {
+        message = 'Image uploaded successfully';
+        this.toasty.success('Arquivo salvo com sucesso!'); 
+      } else {
+        message = 'Image not uploaded successfully';
+      }
+    });
+    //this.display = false;
+    //this.selectedFile = null;
+    //location.reload();
+    this.toasty.success('Arquivo salvo com sucesso!'); 
   }
 
 }
