@@ -48,6 +48,7 @@ import { ProgramacaoService } from './services/programacao.service';
 import {DataTableModule,SharedModule} from 'primeng/primeng';
 import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 import { ProgramacaoComponent } from './programacao/programacao.component';
+import { GradeComponent } from './grade/grade.component';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -75,7 +76,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     TvComponent,
     ContentComponent,
     ListagemProgramacaoComponent,
-    ProgramacaoComponent
+    ProgramacaoComponent,
+    GradeComponent
   ],
   imports: [
     BrowserModule,

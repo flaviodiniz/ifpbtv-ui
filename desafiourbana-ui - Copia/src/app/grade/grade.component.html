@@ -1,0 +1,22 @@
+<div class="container">
+    
+  <div style="text-align:center">
+      <h1 style="color: green;">
+          GRADE DE PROGRAMAÇÃO
+      </h1> 
+      <!-- <div style="margin: 30px; float: right;">
+        <button pButton type="button" label="Nova Programação" class="ui-button-success" (click)="goToTvNovo()" ></button>
+    </div> -->
+  </div>
+
+  <div style="margin: 2%;">
+    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+        <label for="perfis">TV</label>
+    </div>
+    <div class="ui-g-12 ui-md-9">
+        <p-dropdown [options]="tvs" name="tv" placeholder="Selecione"
+        [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="tv"></p-dropdown>
+    </div>
+  </div>
+
+</div>

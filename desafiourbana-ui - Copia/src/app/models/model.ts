@@ -17,6 +17,8 @@ export class TV{
   chave?: string;
   disponivel?: string;
   online?: boolean;
+  label?: string;
+  value?: string;
 }
 
 export class Midia{
