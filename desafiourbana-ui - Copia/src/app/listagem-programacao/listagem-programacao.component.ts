@@ -61,7 +61,6 @@ export class ListagemProgramacaoComponent implements OnInit {
   getProgramacoes3(id: any) {
     this.programacaoService.getImagensDaProgramacao(id).then(dados => {
       console.log("Programação fetch mídias e uploads")
-      //  console.log(dados)
       this.programacoes3 = dados;
       // console.log(this.programacoes3[0][0]);
     });
