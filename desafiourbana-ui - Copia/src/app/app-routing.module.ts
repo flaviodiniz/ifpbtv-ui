@@ -12,6 +12,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListagemUsuarioComponent } from './listagem-usuario/listagem-usuario.component';
 import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 import { ProgramacaoComponent } from './programacao/programacao.component';
+import { GradeComponent } from './grade/grade.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,7 +38,7 @@ const routes: Routes = [
     { path: 'novo', component: CadastroComponent },
     { path: ':id' , component: CadastroComponent},
   ]},
-
+  { path: 'grade', component: GradeComponent },
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoTrocadaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' },

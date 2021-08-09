@@ -115,6 +115,7 @@ export class ListagemMidiaComponent implements OnInit {
     console.log(event)
     //Select File
     this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile);
     this.toasty.success('Arquivo selecionado!'); 
   }
   //Gets called when the user clicks on submit to upload the image
