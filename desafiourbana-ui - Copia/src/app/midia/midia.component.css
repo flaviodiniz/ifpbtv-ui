@@ -1,0 +1,14 @@
+/* Esconde o input */
+input[type='file'] {
+    display: none
+}
+  
+/* Aparência que terá o seletor de arquivo */
+.legenda-btn {
+    background-color: #5cb85c;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    margin: 2%;
+    padding: 6px 20px
+}

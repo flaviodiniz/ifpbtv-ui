@@ -74,39 +74,46 @@
       
 </p-dataTable>
 
-<p-dialog [visible]="display" [width]="400" closable="false">
+<p-dialog [visible]="display" [width]="800" [closable]="true" [positionTop]=20>
 
-    <p-header style="color: green;">
+    <p-header style="color: green !important;">
         Mídias da Programação
     </p-header>
     
-    <p-dataList [value]="midias" [paginator]="true" [rows]="2">
+    <p-dataList [value]="programacoes3" [paginator]="true" [rows]="1">
         <p-header [style]="{'color': 'green'}">
             Lista de Mídias
         </p-header>
         <ng-template let-mid pTemplate="item">
             <div class="ui-g ui-fluid car-item">
-                <div class="ui-g-12 ui-md-3" style="text-align:center">
-                    <img [src]="recuperarImagem(mid.arquivo)" height="60px" width="60px">
+                
+                <div style="width: 35%; margin-left: 10%; margin-top: 5%;">
+                    <img [src]="recuperarImagem(mid[1])" height="100" width="120">
                 </div>
-                <div class="ui-g-12 ui-md-9 car-details">
+    
+                <div style="float: left; width: 55%; padding-bottom: 5%;">
                     <div class="ui-g">
-                        <div class="ui-g-2 ui-sm-6">Título: </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid.titulo }}</div>
-                        
-                        <div class="ui-g-2 ui-sm-6">Chave: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.chaveEspecifica}}</div>
-                        
-                        <div class="ui-g-2 ui-sm-6">Link: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.id}}</div>
-                        
-                        <div class="ui-g-2 ui-sm-6">Disponibilidade: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid}}</div>
+                        <div class="ui-g-2 ui-sm-6">Título:  </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid[5] }}</div>
 
-                        <div class="ui-g-2 ui-sm-6">Adicionar: </div>
-                        <div class="ui-g-10 ui-sm-6">
-                          <button pButton class="ui-button-success" type="button" label="adicionar" (click)="adicionarMidia(mid)"></button>
+                        <div class="ui-g-2 ui-sm-6">Chave:  </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid[7] }}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Tipo: </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid[8] }}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Tipo de mídia: </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid[3] }}</div>
+
+                        <div class="ui-g-2 ui-sm-6">Nome da mídia: </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid[4] }}</div>
+
+                        <div>
+                          <button pButton class="ui-button-success" type="button" label="Editar" (click)="adicionarMidia(mid)"></button>
                         </div>
+                        <div>
+                            <button pButton class="ui-button-secondary" type="button" label="Excluir" (click)="adicionarMidia(mid)"></button>
+                          </div>
                     </div>
                 </div>
             </div>
@@ -114,7 +121,7 @@
     </p-dataList>
 
     <p-footer>
-        <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="display=false" label="Ok"></button>
+        <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="display=false" label="Fechar"></button>
     </p-footer>
 
 </p-dialog>

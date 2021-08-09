@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProgUploadMidiaDTO, TipoProgramacao } from 'app/models/model';
+import { TipoProgramacao } from 'app/models/model';
 import { MidiaService } from 'app/services/midia.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { ToastyService } from 'ng2-toasty';
@@ -61,30 +61,19 @@ export class ListagemProgramacaoComponent implements OnInit {
   getProgramacoes3(id: any) {
     this.programacaoService.getImagensDaProgramacao(id).then(dados => {
       console.log("Programação fetch mídias e uploads")
-       console.log(dados)
+      //  console.log(dados)
       this.programacoes3 = dados;
-    });
-    this.programacoes3.forEach(element => {
-      let progUploadMidiaDTO: ProgUploadMidiaDTO;
-      progUploadMidiaDTO.id = element[0];
-      progUploadMidiaDTO.arquivo = element[1];
-      progUploadMidiaDTO.id_midia = element[2];
-      progUploadMidiaDTO.titulo = element[3];
-      progUploadMidiaDTO.tipoMidia = element[4];
-      progUploadMidiaDTO.chaveEspecifica = element[5];
-      progUploadMidiaDTO.disponibilidadeMidia = element[6];
-      progUploadMidiaDTO.dataCriacao = element[7];
-      this.midias.push(progUploadMidiaDTO)
+      // console.log(this.programacoes3[0][0]);
     });
     this.display = true;
   }
 
   recuperarImagem(imagem: any): any {    
-      var retrievedImage = null;       
-      this.retrieveResonse = imagem;
-      this.base64Data = this.retrieveResonse.picByte;
-      retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;       
-      return retrievedImage;
+    var retrievedImage = null;       
+    this.retrieveResonse = imagem;
+    this.base64Data = this.retrieveResonse;
+    retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;       
+    return retrievedImage;
   }
 
   showDialog() {

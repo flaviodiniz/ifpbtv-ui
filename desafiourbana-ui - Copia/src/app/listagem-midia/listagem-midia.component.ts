@@ -155,6 +155,16 @@ export class ListagemMidiaComponent implements OnInit {
     //     }
     //   }
     //   );
+    console.log(this.selectedFile.type)
+
+    if(this.selectedFile.type === 'application/pdf'){
+      this.toasty.error('Não é possível selecionar arquivos PDF!'); 
+    }else if(this.selectedFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+      this.toasty.error('Não é possível selecionar arquivos docx!');
+    }else if(this.selectedFile.type === 'text/plain'){
+      this.toasty.error('Não é possível selecionar arquivos txt!');
+    }
+    else{
 
     this.file = this.selectedFile;
     this.midiaService.SalvarUpload(this.midia, formData, token)
@@ -168,7 +178,9 @@ export class ListagemMidiaComponent implements OnInit {
     });
     //this.display = false;
     //this.selectedFile = null;
-    //location.reload();
+    location.reload();
+    }
+  
     //this.toasty.success('Arquivo salvo com sucesso!'); 
   }
 
