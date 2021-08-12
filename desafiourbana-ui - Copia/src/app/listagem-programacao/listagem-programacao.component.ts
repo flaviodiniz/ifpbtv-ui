@@ -5,6 +5,7 @@ import { MidiaService } from 'app/services/midia.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/primeng';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-listagem-programacao',
@@ -30,12 +31,19 @@ export class ListagemProgramacaoComponent implements OnInit {
     private toasty: ToastyService,
     private programacaoService: ProgramacaoService,    
     private confirmation: ConfirmationService,
-    // private midiaService: MidiaService 
+    // private midiaService: MidiaService ,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
     this.listarTipos();
     this.getProgramacoes();
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 3 seconds */
+      this.spinner.hide();
+    }, 2000);
   }
 
   getProgramacoes() {
@@ -60,7 +68,7 @@ export class ListagemProgramacaoComponent implements OnInit {
 
   getProgramacoes3(id: any) {
     this.programacaoService.getImagensDaProgramacao(id).then(dados => {
-      console.log("Programação fetch mídias e uploads")
+      // console.log("Programação fetch mídias e uploads")
       this.programacoes3 = dados;
       // console.log(this.programacoes3[0][0]);
     });
@@ -107,7 +115,7 @@ export class ListagemProgramacaoComponent implements OnInit {
   excluir(programacao: any) {
     this.programacaoService.excluir(programacao.id)
       .then(() => {
-        this.toasty.success('Programação excluida com sucesso!'); 
+        this.toasty.success('Programação excluída com sucesso!'); 
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));

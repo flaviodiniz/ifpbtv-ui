@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container" style="width: auto;">
 
     <div style="text-align:center">
         <h1 style="color: green;">
             LISTA DE MÍDIAS
-        </h1>
-    </div>
-    <div style="margin: 2%; float: right;">
-        <button class="btn-salvar" class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
+        </h1>    
+        <div style="margin: 30px; float: right;">
+            <button class="ui-button-success" pButton type="button" label="Nova Mídia"  (click)="goToMidiaNova()" ></button>
+        </div>
     </div>
 
     <form #f="ngForm" autocomplete="off" (ngSubmit)="getMidias()">
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
+            <div style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
                 <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
                     <label for="tiposMidias">Tipo</label>
                 </div>
@@ -49,14 +49,20 @@
             <div style="display: inline-block;">
                 <button class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
             </div>
-        </div>
+        </div>        
+       
+        <ngx-spinner
+            bdColor="rgba(128, 255, 128, 0.0)"
+            size="medium"
+            color="#5cb85c"
+            type="line-scale-party"
+            fullscreen="false"
+          >
+        </ngx-spinner>    
+
         
-    
-
-    
-
         <p-dataTable [value]="midias" [paginator]="true" [rows]="3" [responsive]="true"
-            emptyMessage="Nenhuma mídia encontrada" #tabela>
+            emptyMessage="Nenhuma mídia encontrada" #tabela [style]="{width: '100%'}">
 
             <p-column field="titulo" header="Título"></p-column>
             <p-column field="chaveEspecifica" header="Chave"></p-column>
@@ -68,24 +74,31 @@
                 <ng-template let-midia="rowData" pTemplate="body">
                     <a pButton icon="fa-pencil" class="ui-button-success" [routerLink]="['/midias', midia.id]"></a>
                     <button pButton icon="fa-trash" class="ui-button-success" (click)="confirmarExclusao(midia)"></button>
+                    <!-- <button pButton icon="fa-plus" (click)="showDialog(midia)" class="ui-button-success"></button> -->
+                </ng-template>
+            </p-column>
+            <p-column styleClass="acoes" header="Upload">
+                <ng-template let-midia="rowData" pTemplate="body">
+                    <!-- <a pButton icon="fa-pencil" class="ui-button-success" [routerLink]="['/midias', midia.id]"></a>
+                    <button pButton icon="fa-trash" class="ui-button-success" (click)="confirmarExclusao(midia)"></button> -->
                     <button pButton icon="fa-plus" (click)="showDialog(midia)" class="ui-button-success"></button>
                 </ng-template>
             </p-column>
 
         </p-dataTable>
         
-        <div>
+        <div style="width: 100%;">
         
-        <p-dialog [(visible)]="display"
-        [modal]="true"
-        [responsive]="true"
-        [width]="400"
-        [style]="{width: '200px', minWidth: '250px'}"
-        [contentStyle]="{minHeight: '200px', maxWidth: '400px'}">
+            <p-dialog [(visible)]="display"
+            [modal]="true"
+            [responsive]="true"
+            [width]="400"
+            [style]="{width: '200px', minWidth: '250px'}"
+            [contentStyle]="{minHeight: '200px', maxWidth: '400px'}">
 
-        <p-header style="color: green;">
-            Adicionar arquivo
-        </p-header>
+            <p-header style="color: green;">
+                Adicionar arquivo
+            </p-header>
                 
             <!-- <div>                    
                 <div style="align-items: center; align-self: center;">        
@@ -116,13 +129,11 @@
                 </ul>
             </div>   
             
-            <p-footer>
-            
+            <p-footer>            
                 <!-- <div style="margin-left: 30%; margin-right: 30%; margin-top: 30%;">         -->
                 <div style="margin-right: 40%;">         
                     <button pButton class="ui-button-success" (click)="onUpload()" label="Enviar" [disabled]="!selectedFile"></button>
-                </div>     
-            
+                </div>  
             </p-footer>             
 
             </p-dialog>

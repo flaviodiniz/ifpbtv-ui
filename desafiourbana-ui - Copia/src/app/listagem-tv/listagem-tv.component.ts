@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
-//import { AlertService } from 'ngx-alerts';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { TV } from '../models/model';
 import { TvService } from '../services/tv.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-listagem-tv',
@@ -21,11 +21,17 @@ export class ListagemTvComponent implements OnInit {
     private confirmation: ConfirmationService,
     private router: Router,
     private tvService : TvService,
-    private toasty: ToastyService
+    private toasty: ToastyService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     this.getTvs();
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getTvs() {
@@ -43,8 +49,7 @@ export class ListagemTvComponent implements OnInit {
   }
 
   goToTvNovo() {
-    console.log("clicou")
-    this.router.navigate(['tvs/nova']);   
+   this.router.navigate(['tvs/nova']);   
   }
 
   confirmarExclusao(tv: any) {
@@ -59,7 +64,7 @@ export class ListagemTvComponent implements OnInit {
   excluir(tv: any) {
     this.tvService.excluir(tv.id)
       .then(() => {
-        this.toasty.success('Tv excluida com sucesso!'); 
+        this.toasty.success('Tv excluída com sucesso!'); 
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));

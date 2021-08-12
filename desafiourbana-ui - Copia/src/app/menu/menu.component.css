@@ -1,21 +1,18 @@
 
 .logo{
-
   width: 100px;
   height: 130px; 
-  /* left: 45px; position: relative;
-  top: 10px;*/ 
-  /* width: 40%;
-  height: 13%; */
-  left: 24%; position: relative;
+  left: 22%; position: relative;
   top: 2%;
+  bottom: 0%;
+  right: 2%;
 }
 
 .navbar-item:hover{
   background-color: #56a77a;
 }
 .navbar-item{
-  padding: 10px;
+  padding: 6%;
   list-style: none;
 }
 

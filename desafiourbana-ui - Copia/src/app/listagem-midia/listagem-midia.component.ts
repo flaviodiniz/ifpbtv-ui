@@ -8,6 +8,8 @@ import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MidiaService } from '../services/midia.service';
 
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-listagem-midia',
   templateUrl: './listagem-midia.component.html',
@@ -39,14 +41,22 @@ export class ListagemMidiaComponent implements OnInit {
     private router: Router,
     private toasty: ToastyService,
     private http: Http,
-    private auth: AuthService
+    private auth: AuthService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     this.listarTipos();
     this.getMidias();
     const token = localStorage.getItem('token');
-    console.log(token)
+    // console.log(token)
+
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 2 seconds */
+      this.spinner.hide();
+    }, 2000);
   }
 
   listarTipos() {
@@ -110,7 +120,7 @@ export class ListagemMidiaComponent implements OnInit {
     this.display = true;
   }
 
-   //Gets called when the user selects an image
+   //Retorno pra chamada quando o usuário seleciona um arquivo
   public onFileChanged(event) {
     console.log(event)
     //Select File
@@ -180,22 +190,8 @@ export class ListagemMidiaComponent implements OnInit {
     //this.display = false;
     //this.selectedFile = null;
     location.reload();
-    }
-  
+    }  
     //this.toasty.success('Arquivo salvo com sucesso!'); 
-  }
-
-    //Gets called when the user clicks on retieve image button to get the image from back end
-    getImage() {
-    //Make a call to Sprinf Boot to get the Image Bytes.
-    this.http.get(`http://localhost:8080/upload/${this.midia}` + this.imageName)
-      .subscribe(
-        res => {
-          this.retrieveResonse = res;
-          this.base64Data = this.retrieveResonse.picByte;
-          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
-        }
-      );
   }
 
 }

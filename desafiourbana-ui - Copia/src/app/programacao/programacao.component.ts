@@ -45,6 +45,7 @@ export class ProgramacaoComponent implements OnInit {
     }
     this.listarTipos();
     this.getMidias()
+    this.getMidiasSelecionadas();
   }
 
   get editandoProgramacao() {
@@ -135,6 +136,11 @@ export class ProgramacaoComponent implements OnInit {
   adicionarMidia(midia: any){
     this.midiasSelecionadas.push(midia);
     this.toasty.success("Mídia selecionada");
+  }
+
+  getMidiasSelecionadas(){
+    this.midiasSelecionadas;
+    console.log(this.midiasSelecionadas);
   }
 
 }

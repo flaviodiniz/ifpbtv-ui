@@ -60,11 +60,15 @@ export class CadastroComponent implements OnInit {
 
   salvar(form: Form) {
     console.log(this.usuario)
+    if(this.checarEmail(this.usuario.email)){
       if (this.editandoUsuario) {
         this.atualizarUsuario(form);
       } else {
         this.cadastrarUsuario(form);
       }
+    }else{
+      this.toasty.error("Formato de email inválido!");
+    }
   }
 
   async cadastrarUsuario(form: Form) {
@@ -90,6 +94,11 @@ export class CadastroComponent implements OnInit {
       .catch(erro =>{
         console.log(erro);
       });
+  }
+
+  checarEmail(email: string): boolean{
+    let regex_validation = /^([a-z]){1,}([a-z0-9._-]){1,}([@]){1}([a-z]){2,}([.]){1}([a-z]){2,}([.]?){1}([a-z]?){2,}$/i;
+    return regex_validation.test(email);
   }
   
 }

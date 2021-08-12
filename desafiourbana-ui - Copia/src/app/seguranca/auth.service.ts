@@ -48,6 +48,7 @@ export class AuthService {
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
+    //dados do usuário que está logado
     console.log(this.jwtPayload)
   }
 

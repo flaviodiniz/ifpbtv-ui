@@ -6,6 +6,7 @@ import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { Perfil, Usuario } from '../models/model';
 import { UsuarioService } from '../services/usuario.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-listagem-usuario',
@@ -27,12 +28,18 @@ export class ListagemUsuarioComponent implements OnInit {
     private confirmation: ConfirmationService,
     private router: Router,
     private usuarioService: UsuarioService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
     this.perfil = null;
     this.getPerfis();
     this.getUsuarios();
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getPerfis() {
@@ -75,7 +82,7 @@ export class ListagemUsuarioComponent implements OnInit {
   confirmarExclusao(usuario: any) {
     console.log(usuario, this.auth.jwtPayload);
     if(usuario.id == this.auth.jwtPayload.id){
-      this.toasty.error("Você não pode se alto excluir! Solicite a outro usuário administrador.")
+      this.toasty.error("Você não pode se auto excluir! Solicite a outro usuário administrador.")
     } else {
       this.confirmation.confirm({
         message: 'Tem certeza que deseja excluir?',
@@ -89,7 +96,7 @@ export class ListagemUsuarioComponent implements OnInit {
   excluir(usuario: any) {
     this.usuarioService.excluir(usuario.id)
       .then(() => {
-        this.toasty.success('Usuário excluido com sucesso!'); 
+        this.toasty.success('Usuário excluído com sucesso!'); 
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));

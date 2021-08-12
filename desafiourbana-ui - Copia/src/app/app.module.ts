@@ -16,6 +16,7 @@ import { MultiSelectModule } from 'primeng/primeng';
 import { DialogModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
 import { DataListModule } from 'primeng/primeng';
+import { PasswordModule } from 'primeng/primeng';
 
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -49,6 +50,8 @@ import {DataTableModule,SharedModule} from 'primeng/primeng';
 import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 import { ProgramacaoComponent } from './programacao/programacao.component';
 import { GradeComponent } from './grade/grade.component';
+
+import { NgxSpinnerModule } from "ngx-spinner";
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -84,6 +87,7 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    NgxSpinnerModule,
 
     InputTextModule,
     ButtonModule,
@@ -97,7 +101,9 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     MultiSelectModule,
     DialogModule,
     FileUploadModule,
-    DataListModule
+    DataListModule,
+    PasswordModule
+    
   ],
   providers: [ConfirmationService, 
     ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService, 
