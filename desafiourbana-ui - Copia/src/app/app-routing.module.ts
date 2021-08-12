@@ -13,6 +13,7 @@ import { ListagemUsuarioComponent } from './listagem-usuario/listagem-usuario.co
 import { ListagemProgramacaoComponent } from './listagem-programacao/listagem-programacao.component';
 import { ProgramacaoComponent } from './programacao/programacao.component';
 import { GradeComponent } from './grade/grade.component';
+import { AuthGuard } from './seguranca/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,14 +30,19 @@ const routes: Routes = [
   ]},
   { path: 'tvs' , children: [
     { path: '' , component: ListagemTvComponent },
-    { path: ':id' , component: TvComponent},
-    { path: 'nova' , component: TvComponent},
+    { path: ':id' , component: TvComponent, canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_TV'] }},
+    { path: 'nova' , component: TvComponent, canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_TV'] }},
   ]},
   
   { path: 'usuarios' , children: [
-    { path: '' , component: ListagemUsuarioComponent },
-    { path: 'novo', component: CadastroComponent },
-    { path: ':id' , component: CadastroComponent},
+    { path: '' , component: ListagemUsuarioComponent, canActivate: [AuthGuard],
+    data: { roles: ['ROLE_PESQUISAR_USUARIO'] }},
+    { path: 'novo', component: CadastroComponent, canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_USUARIO'] }},
+    { path: ':id' , component: CadastroComponent, canActivate: [AuthGuard],
+    data: { roles: ['ROLE_CADASTRAR_USUARIO'] }},
   ]},
   { path: 'grade', component: GradeComponent },
   { path: 'nao-autorizado', component: NaoAutorizadoComponent },

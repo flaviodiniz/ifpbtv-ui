@@ -104,10 +104,14 @@ export class MidiaComponent implements OnInit {
     if (this.editandoMidia) {
       this.atualizarMidia(form);
     } else {
-      if(this.selectedFile == null){
-        this.toasty.error("É necessario adicionar o arquivo!")
-      } else {
+      if(this.midia.tipoMidia == 'Streaming'){
         this.cadastrarMidia(form);
+      } else {
+        if(this.selectedFile == null){
+          this.toasty.error("É necessario adicionar o arquivo!")
+        } else {
+          this.cadastrarMidia(form);
+        }
       }
     }
   }

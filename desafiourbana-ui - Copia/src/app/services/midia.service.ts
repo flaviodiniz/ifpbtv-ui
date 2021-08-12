@@ -76,9 +76,9 @@ export class MidiaService {
     });
   }
 
-  getMidias(titulo: any, chave: any, tipo: any): Promise<any> {
+  getMidias(titulo: any, chave: any, tipo: any, usuario: any): Promise<any> {
     console.log(titulo, chave, tipo)
-    return this.http.get(`${this.baseUrl}/midias/${titulo}/${chave}/${tipo}`) 
+    return this.http.get(`${this.baseUrl}/midias/${titulo}/${chave}/${tipo}/${usuario}`) 
       .toPromise()
       .then(response => { 
       //  console.log(response.json());
