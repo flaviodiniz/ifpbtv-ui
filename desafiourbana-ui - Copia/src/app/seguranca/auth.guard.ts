@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
             return true;
           });
       } else if (next.data.roles && !this.auth.temQualquerPermissao(next.data.roles)) {
-        // this.router.navigate(['/nao-autorizado']); //troquei para apenas apresentar a mensagem
+        this.router.navigate(['/nao-autorizado']); //troquei para apenas apresentar a mensagem
         this.toasty.error('Você não tem permissão para executar esta ação');
         return false;
       }

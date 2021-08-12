@@ -135,6 +135,7 @@ export class ProgramacaoComponent implements OnInit {
   adicionarMidia(midia: any){
     this.midiasSelecionadas.push(midia);
     this.toasty.success("Mídia selecionada");
+    console.log(this.midiasSelecionadas);
   }
 
 }

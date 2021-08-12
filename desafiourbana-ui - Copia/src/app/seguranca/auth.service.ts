@@ -48,7 +48,6 @@ export class AuthService {
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
-    console.log(this.jwtPayload)
   }
 
   private carregarToken() {
@@ -68,7 +67,7 @@ export class AuthService {
       .toPromise()
       .then(response => {
         this.armazenarToken(response.json().access_token);
-        console.log('Novo access token criado!');
+        //console.log('Novo access token criado!');
         return Promise.resolve(null);
       })
       .catch(response => {
@@ -91,7 +90,11 @@ export class AuthService {
   }
 
   temPermissao(permissao: string) {
-    return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+    if(this.jwtPayload.authorities != undefined){
+      return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+    } else {
+      return false;
+    }
   }
 
   temQualquerPermissao(roles) {
