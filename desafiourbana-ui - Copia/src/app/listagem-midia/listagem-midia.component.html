@@ -72,8 +72,12 @@
 
             <p-column styleClass="acoes" header="Ações">
                 <ng-template let-midia="rowData" pTemplate="body">
-                    <a pButton icon="fa-pencil" class="ui-button-success" [routerLink]="['/midias', midia.id]"></a>
-                    <button pButton icon="fa-trash" class="ui-button-success" (click)="confirmarExclusao(midia)"></button>
+                    <a pButton icon="fa-pencil" class="ui-button-success" 
+                        [routerLink]="['/midias', midia.id]"
+                        pTooltip="Atualizar dados da mídia"></a>
+                    <button pButton icon="fa-trash" class="ui-button-success" 
+                        (click)="confirmarExclusao(midia)"
+                        pTooltip="Excluir mídia"></button>
                     <!-- <button pButton icon="fa-plus" (click)="showDialog(midia)" class="ui-button-success"></button> -->
                 </ng-template>
             </p-column>

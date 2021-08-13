@@ -17,6 +17,7 @@ import { DialogModule } from 'primeng/primeng';
 import { FileUploadModule } from 'primeng/primeng';
 import { DataListModule } from 'primeng/primeng';
 import { PasswordModule } from 'primeng/primeng';
+import { InputMaskModule } from 'primeng/primeng';
 
 import { ToastyModule } from 'ng2-toasty';
 import { JwtHelper, AuthHttp, AuthConfig } from 'angular2-jwt';
@@ -102,7 +103,8 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
     DialogModule,
     FileUploadModule,
     DataListModule,
-    PasswordModule
+    PasswordModule,
+    InputMaskModule
     
   ],
   providers: [ConfirmationService, 

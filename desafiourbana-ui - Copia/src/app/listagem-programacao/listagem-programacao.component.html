@@ -70,14 +70,18 @@
         <p-column styleClass="acoes" header="Mídia" >
             <ng-template let-prog="rowData" pTemplate="body">
                 <a pButton icon="fa-file" class="ui-button-success" 
-                (click)="getProgramacoes3(prog.id)"></a>
+                (click)="getProgramacoes3(prog.id)"
+                pTooltip="Visualizar arquivos de mídia da programação selecionada"></a>
             </ng-template>
         </p-column>
         <p-column styleClass="acoes" header="Ações">
           <ng-template let-prog="rowData" pTemplate="body">
             <a pButton icon="fa-pencil" class="ui-button-success" 
-            [routerLink]="['/programacao', prog.id]"></a>
-            <button pButton icon="fa-trash" class="ui-button-success" type="button" (click)="confirmarExclusao(prog)"></button>
+            [routerLink]="['/programacao', prog.id]"
+            pTooltip="Atualizar dados da programãção selecionada"></a>
+            <button pButton icon="fa-trash" class="ui-button-success" type="button"
+                (click)="confirmarExclusao(prog)"
+                pTooltip="Excluir programação selecionada"></button>
           </ng-template>
       </p-column>
       
