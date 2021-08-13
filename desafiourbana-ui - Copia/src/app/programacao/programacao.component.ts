@@ -123,7 +123,7 @@ export class ProgramacaoComponent implements OnInit {
     if (this.tipo == null || this.tipo == '') {
       this.tipo = undefined;
     }
-    this.midiaService.getMidias(this.titulo, this.chave, this.tipo)
+    this.midiaService.getMidias(this.titulo, this.chave, this.tipo, this.auth.jwtPayload.id)
     .then(dados => {
       this.midias = dados;
     });
