@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="width: auto;">
 
   <div style="text-align:center">
     <h1 style="color: green;">
@@ -35,7 +35,7 @@
         <label>Horário de Início</label>
     </div>
     <div class="ui-g-12 ui-md-9 ui-fluid">
-      <input pInputText type="text" name="inicio" class="campo" [(ngModel)]="programacao.horarioInicio">
+      <p-inputMask type="text" mask="99:99" name="inicio" class="campo" [(ngModel)]="programacao.horarioInicio"></p-inputMask>
     </div> 
 </div> 
 
@@ -44,7 +44,7 @@
         <label>Horário de Encerramento</label>
     </div>
     <div class="ui-g-12 ui-md-9 ui-fluid">
-      <input pInputText type="text" name="fim" class="campo" [(ngModel)]="programacao.horarioFim">
+      <p-inputMask type="text" mask="99:99" name="fim" class="campo" [(ngModel)]="programacao.horarioFim"></p-inputMask>
     </div> 
 </div> 
 

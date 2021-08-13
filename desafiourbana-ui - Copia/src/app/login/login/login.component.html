@@ -1,10 +1,10 @@
-  <div style="width: 40%; height: 40%; margin-top: 10%; margin-left: 30%; ">
+<div style="width: 40%; height: 40%; margin-top: 10%; margin-left: 23%; ">
 
   <form autocomplete="off" #f="ngForm">
     <div class="ui-g ui-fluid">
 
       <div class="ui-g-12">
-        <h1>Login</h1>
+        <h1 style="color: green;">Login</h1>
       </div>
 
       <div class="ui-g-12">
@@ -18,7 +18,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button pButton type="submit" label="Login" [disabled]="!f.valid"
+        <button pButton type="submit" class="ui-button-success" label="Login" [disabled]="!f.valid"
           (click)="login(usuario.value, senha.value); senha.value = ''"></button>
       </div>
 
