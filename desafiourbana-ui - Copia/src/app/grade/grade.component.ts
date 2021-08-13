@@ -10,7 +10,9 @@ import { TvService } from 'app/services/tv.service';
 export class GradeComponent implements OnInit {
 
   local;
+  grade;
   tvs = [];
+  tv = new TV;
 
   constructor(
     private tvService : TvService,
@@ -18,6 +20,7 @@ export class GradeComponent implements OnInit {
 
   ngOnInit() {
     this.getTvs();
+    console.log(this.tvs);
   }
 
   getTvs() {
@@ -30,10 +33,21 @@ export class GradeComponent implements OnInit {
         let tv = new TV;
         tv = element;
         tv.label = element.local;
-        tv.value = element.local;
+        tv.value = element.gradeProgramacao;
         this.tvs.push(tv);
       });
     });
+  }
+
+  getGradeTv(id: any){
+    this.tvService.getGradeTv(id).then(dados => {
+      console.log(dados);
+    });
+  }
+
+  buscar(){
+    console.log(this.tv);
+    this.getGradeTv(this.tv);
   }
 
 }

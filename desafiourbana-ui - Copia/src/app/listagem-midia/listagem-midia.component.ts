@@ -7,7 +7,6 @@ import { environment } from 'environments/environment';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/components/common/confirmationservice';
 import { MidiaService } from '../services/midia.service';
-
 import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({

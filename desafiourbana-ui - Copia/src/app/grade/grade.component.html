@@ -11,12 +11,16 @@
 
   <div style="margin: 2%;">
     <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label for="perfis">TV</label>
+        <label for="tv">TV</label>
     </div>
     <div class="ui-g-12 ui-md-9">
         <p-dropdown [options]="tvs" name="tv" placeholder="Selecione"
         [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="tv"></p-dropdown>
     </div>
+  </div>
+
+  <div >
+    <button pButton type="button" class="ui-button-success" label="Buscar grade" (click)="buscar()"></button>
   </div>
 
 </div>

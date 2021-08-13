@@ -74,5 +74,14 @@ export class TvService {
       return response.json();;
     });
   }
+
+  getGradeTv(id: any){
+    return this.http.get(`${this.baseUrl}/tvs/grade/${id}`)
+      .toPromise()
+      .then(response => {
+        const tv = response.json();
+        return tv;
+      });
+  }
   
 }
