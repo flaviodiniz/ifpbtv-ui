@@ -85,3 +85,11 @@ export class TipoProgramacao{
   label?: string;
   value?: string;
 }
+
+export class GradeProgramacao{
+  id?: number;	
+	titulo?: string;
+  exibindo?: boolean;
+	ativa?: boolean;
+  programacoes = new Array<Programacao>()
+}
