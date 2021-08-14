@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TV } from 'app/models/model';
+import { ProgramacaoService } from 'app/services/programacao.service';
 import { TvService } from 'app/services/tv.service';
 
 @Component({
@@ -13,8 +14,10 @@ export class GradeComponent implements OnInit {
   grade;
   tvs = [];
   tv = new TV;
+  grades = [];
 
   constructor(
+    private programacaoService: ProgramacaoService,  
     private tvService : TvService,
   ) { }
 
@@ -41,13 +44,24 @@ export class GradeComponent implements OnInit {
 
   getGradeTv(id: any){
     this.tvService.getGradeTv(id).then(dados => {
-      console.log(dados);
+      this.grade = dados;
+      console.log(this.grade);
+      this.grades.push(this.grade);
     });
   }
 
-  buscar(){
+  async buscar(){
     console.log(this.tv);
-    this.getGradeTv(this.tv);
+    await this.getGradeTv(this.tv);
+    await this.getProgramacoesGrade(this.tv);
+  }
+
+  getProgramacoesGrade(id: any){
+    this.programacaoService.getProgramacoesGrade(id).then(dados => {
+      console.log(dados);
+      this.grade.programacoes = dados;
+    });
+
   }
 
 }

@@ -25,4 +25,30 @@
 
   </div>
 
+  <div>
+    <table id="customers">
+      <thead >
+        <tr>
+          <th colspan="4">Grade da TV Selecionada</th>
+        </tr>
+      </thead>
+      <thead class="thead-light">
+        <tr>
+          <th>Titulo</th>
+          <th>Ativo</th>
+          <th>Exibindo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of grades">
+          <th>{{ g.titulo }}</th>
+          <th>{{ g.ativa }}</th>
+          <th>{{ g.exibindo }}</th>
+          <th></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

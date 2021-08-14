@@ -26,9 +26,18 @@ export class ProgramacaoService {
   }
 
   getProgramacoes(titulo: any, tipoProgramacao: any): Promise<any> {
-    console.log(titulo)
-    console.log(tipoProgramacao)
     return this.http.get(`${this.baseUrl}/programacao/listar/${titulo}/${tipoProgramacao}`) 
+      .toPromise()
+      .then(response => { 
+        return response.json();
+      })
+      .catch(erro => {
+        return Promise.reject(`Erro ao listar programacao.`);
+      });
+  }
+
+  getProgramacoesGrade(idGrade: any): Promise<any> {
+    return this.http.get(`${this.baseUrl}/programacao/listarProgramacoesGrade/${idGrade}`) 
       .toPromise()
       .then(response => { 
         return response.json();
