@@ -6,6 +6,7 @@ import { ProgramacaoService } from 'app/services/programacao.service';
 import { ToastyService } from 'ng2-toasty';
 import { ConfirmationService } from 'primeng/primeng';
 import { NgxSpinnerService } from "ngx-spinner";
+import { AuthService } from 'app/seguranca/auth.service';
 
 @Component({
   selector: 'app-listagem-programacao',
@@ -27,11 +28,11 @@ export class ListagemProgramacaoComponent implements OnInit {
   retrieveResonse: any;
 
   constructor(
+    private auth: AuthService,
     private router: Router,
     private toasty: ToastyService,
     private programacaoService: ProgramacaoService,    
     private confirmation: ConfirmationService,
-    // private midiaService: MidiaService ,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -53,7 +54,7 @@ export class ListagemProgramacaoComponent implements OnInit {
     if (this.programacao == null || this.programacao == '') {
       this.programacao = undefined;
     }
-    this.programacaoService.getProgramacoes(this.titulo, this.programacao).then(dados => {
+    this.programacaoService.getProgramacoes(this.titulo, this.programacao, this.auth.jwtPayload.id).then(dados => {
       // console.log(dados)
       this.programacoes = dados;
     });

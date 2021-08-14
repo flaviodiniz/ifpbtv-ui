@@ -18,106 +18,86 @@
       <div class="ui-g-12 ui-md-9 ui-fluid">
           <input pInputText type="text" name="titulo" class="campo" [(ngModel)]="programacao.titulo">
       </div>
-  </div>
+    </div>
 
-  <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label for="tiposMidias">Tipo de Programação</label>
+    <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
+      <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+          <label for="tiposMidias">Tipo de Programação</label>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+          <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione" 
+          [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="programacao.tipoProgramacao" ></p-dropdown>
+      </div>
     </div>
-    <div class="ui-g-12 ui-md-9 ui-fluid">
-        <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione" 
-        [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="programacao.tipoProgramacao" ></p-dropdown>
-    </div>
-  </div>
 
-  <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label>Horário de Início</label>
+    <div style="margin: 2%;">
+      <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+          <label>Dia de Exibição</label>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+          <input pInputText type="text" name="diaExibicao" class="campo" [(ngModel)]="programacao.diaExibicao">
+      </div>
     </div>
-    <div class="ui-g-12 ui-md-9 ui-fluid">
-      <p-inputMask type="text" mask="99:99" name="inicio" class="campo" [(ngModel)]="programacao.horarioInicio"></p-inputMask>
+
+    <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
+      <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+          <label>Horário de Início</label>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <p-inputMask type="text" mask="99:99" name="inicio" class="campo" [(ngModel)]="programacao.horarioInicio"></p-inputMask>
+      </div> 
     </div> 
-</div> 
 
- <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label>Horário de Encerramento</label>
-    </div>
-    <div class="ui-g-12 ui-md-9 ui-fluid">
-      <p-inputMask type="text" mask="99:99" name="fim" class="campo" [(ngModel)]="programacao.horarioFim"></p-inputMask>
+    <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
+      <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+          <label>Horário de Encerramento</label>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <p-inputMask type="text" mask="99:99" name="fim" class="campo" [(ngModel)]="programacao.horarioFim"></p-inputMask>
+      </div> 
     </div> 
-</div> 
 
-<div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Imediata'">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label>Dia da semana</label>
-    </div>
-    <div class="ui-g-12 ui-md-9 ui-fluid">
-      <input pInputText type="text" name="diaSemana" class="campo" [(ngModel)]="programacao.diaSemana">
+    <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Imediata'">
+      <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+          <label>Dia da semana</label>
+      </div>
+      <div class="ui-g-12 ui-md-9 ui-fluid">
+        <input pInputText type="text" name="diaSemana" class="campo" [(ngModel)]="programacao.diaSemana">
+      </div> 
     </div> 
-</div> 
 
-<!-- <div style="margin: 2%;">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label>Duração</label>
+    <div style="display: inline-block; margin-right: 60%; margin-left: 3%; margin-bottom: 2%;">
+      <div style="display: inline-block;">
+          <button class="btn-salvar" pButton type="submit" class="ui-button-success" label="Salvar" ></button>
+      </div>
+      <div style="display: inline-block;">
+          <button class="ui-button-secondary" routerLink="/programacao" pButton label="Cancelar"></button>
+      </div>
     </div>
-    <div class="ui-g-12 ui-md-9 ui-fluid">
-      <input pInputText type="text" name="duracao" class="campo" [(ngModel)]="programacao.duracao">
-    </div> 
-</div>  -->
 
-  <div style="display: inline-block; margin-right: 60%; margin-left: 3%; margin-bottom: 2%;">
-    <div style="display: inline-block;">
-        <button class="btn-salvar" pButton type="submit" class="ui-button-success" label="Salvar" ></button>
-    </div>
-    <div style="display: inline-block;">
-        <button class="ui-button-secondary" routerLink="/programacao" pButton label="Cancelar"></button>
-    </div>
-  </div>
-
-<!-- <p-dataTable [value]="midiasSelecionadas" [paginator]="true" [rows]="2" [responsive]="true"
-    emptyMessage="Nenhuma mídia adicionada à programação" #tabela>
-        
-        <p-column field="titulo" header="Nome"></p-column>
-        <p-column field="tipo" header="Tipo"></p-column>
-        <p-column field="duracao" header="Duração"></p-column>
-        
-        <p-column styleClass="acoes" header="Editar">
-            <ng-template let-tv="rowData" pTemplate="body">
-              <a pButton icon="fa-pencil" class="ui-button-success" label="editar" [routerLink]="['/programacao', prog.id]"></a>
-            </ng-template>
-        </p-column>
-        <p-column styleClass="acoes" header="Excluir">
-          <ng-template let-tv="rowData" pTemplate="body">
-            <button pButton icon="fa-trash" class="ui-button-success" type="button" label="excluir" (click)="confirmarExclusao(tv)"></button>
-          </ng-template>
-      </p-column>      
-</p-dataTable>     -->
-
-<div>
-  <table id="customers">
-    <thead class="thead-light">
-      <tr>
-        <th colspan="3">Midias Selecionadas</th>
-      </tr>
-    </thead>
-    <thead class="thead-light">
-      <tr>
-        <th>Titulo</th>
-        <th>Tipo</th>
-        <th>Duração</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let m of midiasSelecionadas">
-        <th>{{ m.titulo }}</th>
-        <th>{{ m.tipoMidia }}</th>
-        <th>{{ m.duracao }}</th>
-      </tr>
-    </tbody>
-  </table>
-</div>
-  
+    <div>
+      <table id="customers">
+        <thead class="thead-light">
+          <tr>
+            <th colspan="3">Midias Selecionadas</th>
+          </tr>
+        </thead>
+        <thead class="thead-light">
+          <tr>
+            <th>Titulo</th>
+            <th>Tipo</th>
+            <th>Duração</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of midiasSelecionadas">
+            <th>{{ m.titulo }}</th>
+            <th>{{ m.tipoMidia }}</th>
+            <th>{{ m.duracao }}</th>
+          </tr>
+        </tbody>
+      </table>
+  </div> 
 
     <p-dialog header="Adicionar Mídia" [(visible)]="display">
 

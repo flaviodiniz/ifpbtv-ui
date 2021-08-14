@@ -25,8 +25,8 @@ export class ProgramacaoService {
     });
   }
 
-  getProgramacoes(titulo: any, tipoProgramacao: any): Promise<any> {
-    return this.http.get(`${this.baseUrl}/programacao/listar/${titulo}/${tipoProgramacao}`) 
+  getProgramacoes(titulo: any, tipoProgramacao: any, usuario: any): Promise<any> {
+    return this.http.get(`${this.baseUrl}/programacao/listar/${titulo}/${tipoProgramacao}/${usuario}`) 
       .toPromise()
       .then(response => { 
         return response.json();
