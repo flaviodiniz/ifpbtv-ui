@@ -87,6 +87,7 @@ export class ProgramacaoComponent implements OnInit {
   }
 
   async cadastrarProgramacao(form: Form) {  
+    this.programacao.usuario = this.auth.jwtPayload.id;
     this.programacao.playlist = this.midiasSelecionadas;  
     await this.programacaoService.salvarProgramacao(this.programacao)
       .then(programacaoCadastrada => {

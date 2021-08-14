@@ -61,7 +61,6 @@ export class GradeComponent implements OnInit {
       console.log(dados);
       this.grade.programacoes = dados;
     });
-
   }
 
 }

@@ -78,6 +78,8 @@ export class Programacao{
 	horarioFim?: string;
 	diaSemana?: string;
   dataCriacao?: Date;
+  usuario?: number;
+  diaExibicao?: number;
   playlist = new Array<Midia>();
 }
 
