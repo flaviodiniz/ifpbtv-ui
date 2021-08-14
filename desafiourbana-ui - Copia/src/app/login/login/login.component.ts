@@ -19,7 +19,7 @@ export class LoginComponent {
     this.auth.login(usuario, senha)
       .then(() => {
         console.log('LOGIN REALIZADO COM SUCESSO')
-        this.router.navigate(['/usuarios']);
+        this.router.navigate(['/grade']);
       })
       .catch(erro => {
         this.errorHandler.handle(erro);

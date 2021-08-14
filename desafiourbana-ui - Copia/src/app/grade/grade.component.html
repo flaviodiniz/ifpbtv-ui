@@ -4,23 +4,25 @@
       <h1 style="color: green;">
           GRADE DE PROGRAMAÇÃO
       </h1> 
-      <!-- <div style="margin: 30px; float: right;">
-        <button pButton type="button" label="Nova Programação" class="ui-button-success" (click)="goToTvNovo()" ></button>
-    </div> -->
   </div>
 
-  <div style="margin: 2%;">
-    <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-        <label for="tv">TV</label>
-    </div>
-    <div class="ui-g-12 ui-md-9">
-        <p-dropdown [options]="tvs" name="tv" placeholder="Selecione"
-        [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="tv"></p-dropdown>
-    </div>
-  </div>
+  <div style="width: 100%;">
 
-  <div >
-    <button pButton type="button" class="ui-button-success" label="Buscar grade" (click)="buscar()"></button>
+    <div style="margin-left: 2%; width: 40%;">
+      <div class="ui-g-12 ui-md-9" style="color: green;">
+          <label for="tv">TV</label>
+      </div>
+      <div class="ui-g-12 ui-md-9">
+          <p-dropdown [options]="tvs" name="tv" placeholder="Selecione"
+          [style]="{width: '100%', minWidth: '50%'}" [(ngModel)]="tv"></p-dropdown>
+      </div>
+    </div>
+  
+    <div style="float: right; width: 67%; margin-left: 0%; margin-top: 1%;">
+      <button pButton type="button" class="ui-button-success" label="Buscar grade"
+      (click)="buscar()"></button>
+    </div>  
+
   </div>
 
 </div>

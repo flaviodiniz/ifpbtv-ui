@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div style="margin: 2%;">
+  <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
     <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
         <label>Horário de Início</label>
     </div>
@@ -39,7 +39,7 @@
     </div> 
 </div> 
 
- <div style="margin: 2%;">
+ <div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Normal'">
     <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
         <label>Horário de Encerramento</label>
     </div>
@@ -48,7 +48,7 @@
     </div> 
 </div> 
 
-<div style="margin: 2%;">
+<div style="margin: 2%;" *ngIf="programacao.tipoProgramacao === 'Imediata'">
     <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
         <label>Dia da semana</label>
     </div>
@@ -122,30 +122,32 @@
     <p-dialog header="Adicionar Mídia" [(visible)]="display">
 
       <p-dataList [value]="midias" [paginator]="true" [rows]="2">
-        <p-header [style]="{'color': 'green'}">
+        <p-header>
             Lista de Mídias
         </p-header>
         <ng-template let-mid pTemplate="item">
-            <div class="ui-g ui-fluid car-item">
+            <div class="ui-g ui-fluid">
                 <!-- <div class="ui-g-12 ui-md-3" style="text-align:center">
                     <img src="assets/showcase/images/demo/car/{{car.brand}}.png">
                 </div> -->
-                <div class="ui-g-12 ui-md-9 car-details">
+                <div class="ui-g-12 ui-md-9">
                     <div class="ui-g">
                         <div class="ui-g-2 ui-sm-6">Título: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.titulo}}</div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid.titulo }}</div>
                         
                         <div class="ui-g-2 ui-sm-6">Chave: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.chaveEspecifica}}</div>
-                        
-                        <div class="ui-g-2 ui-sm-6">Link: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.link}}</div>
-                        
-                        <div class="ui-g-2 ui-sm-6">Disponibilidade: </div>
-                        <div class="ui-g-10 ui-sm-6">{{mid.disponibilidade}}</div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid.chaveEspecifica }}</div>
 
-                        <div class="ui-g-2 ui-sm-6">Adicionar: </div>
-                        <div class="ui-g-10 ui-sm-6">
+                        <div class="ui-g-2 ui-sm-6">Tipo de Mídia: </div>
+                        <div class="ui-g-10 ui-sm-6">{{ mid.tipoMidia }}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6" *ngIf="mid.link">Link: </div>
+                        <div class="ui-g-10 ui-sm-6" *ngIf="mid.link">{{ mid.link }}</div>
+                        
+                        <div class="ui-g-2 ui-sm-6" *ngIf="mid.disponibilidadeMidia">Disponibilidade: </div>
+                        <div class="ui-g-10 ui-sm-6" *ngIf="mid.disponibilidadeMidia">{{ mid.disponibilidadeMidia }}</div>
+
+                        <div>
                           <button pButton class="ui-button-success" type="button" label="adicionar" (click)="adicionarMidia(mid)" (click)="getMidiasSelecionadas()"></button>
                         </div>
                     </div>
