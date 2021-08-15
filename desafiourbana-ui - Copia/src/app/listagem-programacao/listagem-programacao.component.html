@@ -64,8 +64,13 @@
           <p-column field="tipoProgramacao" header="Tipo"></p-column>
           <p-column field="horarioInicio" header="H. Início"></p-column>
           <p-column field="horarioFim" header="H. Fim"></p-column>
-          <p-column field="diaSemana" header="Dia"></p-column>
-          <p-column field="playlist.length" header="Qtd mídias"></p-column>
+          <!-- <p-column field="diaSemana" header="Dia"></p-column> -->
+          <p-column field="dataExibicao" header="Data Exibição">
+            <ng-template let-col let-item="rowData" pTemplate="body">
+                {{item[col.field] | date:'dd/MM/yyyy'}}
+            </ng-template>
+          </p-column>
+          <!-- <p-column field="playlist.length" header="Qtd mídias"></p-column> -->
           
           <p-column styleClass="acoes" header="Mídia" >
               <ng-template let-prog="rowData" pTemplate="body">

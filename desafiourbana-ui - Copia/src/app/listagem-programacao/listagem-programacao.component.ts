@@ -36,15 +36,12 @@ export class ListagemProgramacaoComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit() {
-    this.listarTipos();
-    this.getProgramacoes();
-    
+  async ngOnInit() {
     this.spinner.show();
-
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
+    await this.listarTipos();
+    await this.getProgramacoes();
+    
+    this.spinner.hide();
   }
 
   getProgramacoes() {
@@ -114,6 +111,7 @@ export class ListagemProgramacaoComponent implements OnInit {
   }
 
   excluir(programacao: any) {
+    this.spinner.show();
     this.programacaoService.excluir(programacao.id)
       .then(() => {
         this.toasty.success('Programação excluída com sucesso!'); 

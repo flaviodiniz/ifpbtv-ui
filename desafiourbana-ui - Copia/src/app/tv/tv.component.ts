@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Form } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastyService } from 'ng2-toasty';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Marca, TV } from '../models/model';
 import { TvService } from '../services/tv.service';
 
@@ -20,6 +21,7 @@ export class TvComponent implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,  
     private tvService: TvService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class TvComponent implements OnInit {
   }
 
   salvar(form: Form) {
+    this.spinner.show();
     if (this.editandoTv) {
       this.atualizarTv(form);
     } else {

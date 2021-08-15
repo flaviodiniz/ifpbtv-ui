@@ -6,6 +6,7 @@ import { AuthService } from 'app/seguranca/auth.service';
 import { ToastyService } from 'ng2-toasty';
 import { Chave, Disponibilidade, Midia, TipoMidia, Usuario } from '../models/model';
 import { MidiaService } from '../services/midia.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class MidiaComponent implements OnInit {
     private route: ActivatedRoute, 
     private toasty: ToastyService,
     private midiaService: MidiaService,
+    private spinner: NgxSpinnerService,
     private router: Router 
   ) { }
 
@@ -101,6 +103,7 @@ export class MidiaComponent implements OnInit {
   }
 
   salvar(form: Form) {
+    this.spinner.show();
     if (this.editandoMidia) {
       this.atualizarMidia(form);
     } else {

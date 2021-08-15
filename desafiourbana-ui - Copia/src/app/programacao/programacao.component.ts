@@ -9,6 +9,7 @@ import { Form } from '@angular/forms';
 import { MidiaService } from 'app/services/midia.service';
 import { ThrowStmt } from '@angular/compiler';
 import { ConfirmationService } from 'primeng/primeng';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-programacao',
@@ -35,6 +36,7 @@ export class ProgramacaoComponent implements OnInit {
     private router: Router,
     private midiaService: MidiaService, 
     private confirmation: ConfirmationService,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
@@ -81,6 +83,7 @@ export class ProgramacaoComponent implements OnInit {
     if(this.midiasSelecionadas.length === 0){
       this.toasty.error("Adicione pelo menos uma mídia!");
     }else{
+      this.spinner.show();
       if (this.editandoProgramacao) {
         this.atualizarProgramacao(form);
       } else {
