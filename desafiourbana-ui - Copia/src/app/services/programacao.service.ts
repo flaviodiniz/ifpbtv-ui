@@ -47,6 +47,17 @@ export class ProgramacaoService {
       });
   }
 
+  getProgramacoesParaGrade(idGrade: any): Promise<any> {
+    return this.http.get(`${this.baseUrl}/programacao/listarProgramacoesParaGrade/${idGrade}`) 
+      .toPromise()
+      .then(response => { 
+        return response.json();
+      })
+      .catch(erro => {
+        return Promise.reject(`Erro ao listar programacao.`);
+      });
+  }
+
   getProgramacoesSemFiltro(): Promise<any> {
     return this.http.get(`${this.baseUrl}/programacao/all`) 
       .toPromise()

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TV } from 'app/models/model';
+import { AuthService } from 'app/seguranca/auth.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { TvService } from 'app/services/tv.service';
 
@@ -15,14 +16,17 @@ export class GradeComponent implements OnInit {
   tvs = [];
   tv = new TV;
   grades = [];
+  programacoes = [];
 
   constructor(
+    private auth: AuthService,
     private programacaoService: ProgramacaoService,  
     private tvService : TvService,
   ) { }
 
   ngOnInit() {
     this.getTvs();
+    this.getProgramacoesParaGrade(this.auth.jwtPayload.id);
     console.log(this.tvs);
   }
 
@@ -60,6 +64,13 @@ export class GradeComponent implements OnInit {
     this.programacaoService.getProgramacoesGrade(id).then(dados => {
       console.log(dados);
       this.grade.programacoes = dados;
+    });
+  }
+
+  getProgramacoesParaGrade(id: any){
+    this.programacaoService.getProgramacoesParaGrade(id).then(dados => {
+      console.log(dados);
+      this.programacoes = dados;
     });
   }
 
