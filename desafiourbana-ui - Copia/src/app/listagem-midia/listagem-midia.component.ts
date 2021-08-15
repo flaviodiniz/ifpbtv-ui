@@ -106,6 +106,7 @@ export class ListagemMidiaComponent implements OnInit {
   }
 
   excluir(midia: any) {
+    this.spinner.show();
     this.midiaService.excluir(midia.id)
       .then(() => {
         this.toasty.success('Mídia excluida com sucesso!'); 

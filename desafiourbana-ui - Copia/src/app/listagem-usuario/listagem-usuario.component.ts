@@ -94,6 +94,7 @@ export class ListagemUsuarioComponent implements OnInit {
   }
 
   excluir(usuario: any) {
+    this.spinner.show();
     this.usuarioService.excluir(usuario.id)
       .then(() => {
         this.toasty.success('Usuário excluído com sucesso!'); 

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Form } from '@angular/forms';
 import { Perfil, Usuario } from '../models/model';
 import { ToastyService } from 'ng2-toasty';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,8 +20,9 @@ export class CadastroComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private router: Router,  
+    private spinner: NgxSpinnerService,
+    private toasty: ToastyService,
     private usuarioService: UsuarioService,
-    private toasty: ToastyService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +61,7 @@ export class CadastroComponent implements OnInit {
   }
 
   salvar(form: Form) {
+    this.spinner.show();
     console.log(this.usuario)
     if(this.checarEmail(this.usuario.email)){
       if (this.editandoUsuario) {
@@ -79,6 +82,7 @@ export class CadastroComponent implements OnInit {
         } else {
           this.toasty.success('Usuário salvo com sucesso!');
           this.router.navigate(['usuarios']);
+          this.spinner.hide();
         }
       });
   }

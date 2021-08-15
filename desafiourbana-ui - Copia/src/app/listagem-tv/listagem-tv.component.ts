@@ -62,6 +62,7 @@ export class ListagemTvComponent implements OnInit {
   }
 
   excluir(tv: any) {
+    this.spinner.show();
     this.tvService.excluir(tv.id)
       .then(() => {
         this.toasty.success('Tv excluída com sucesso!'); 
