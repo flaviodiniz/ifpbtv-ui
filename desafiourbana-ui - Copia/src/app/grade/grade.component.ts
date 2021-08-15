@@ -17,6 +17,8 @@ export class GradeComponent implements OnInit {
   tv = new TV;
   grades = [];
   programacoes = [];
+  programacoesSelecionadas = [];
+  displayAdd: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -26,7 +28,7 @@ export class GradeComponent implements OnInit {
 
   ngOnInit() {
     this.getTvs();
-    this.getProgramacoesParaGrade(this.auth.jwtPayload.id);
+    this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
     console.log(this.tvs);
   }
 
@@ -57,21 +59,30 @@ export class GradeComponent implements OnInit {
   async buscar(){
     console.log(this.tv);
     await this.getGradeTv(this.tv);
-    await this.getProgramacoesGrade(this.tv);
+    await this.getProgramacoesDaGradeDaTVSelecionada(this.tv);
   }
 
-  getProgramacoesGrade(id: any){
-    this.programacaoService.getProgramacoesGrade(id).then(dados => {
-      console.log(dados);
+  getProgramacoesDaGradeDaTVSelecionada(id: any){
+    this.programacaoService.getProgramacoesDaGradeDaTVSelecionada(this.tv).then(dados => {
+    //  console.log(dados);
       this.grade.programacoes = dados;
     });
   }
 
-  getProgramacoesParaGrade(id: any){
-    this.programacaoService.getProgramacoesParaGrade(id).then(dados => {
+  getProgramacoesDoUsuarioLogado(id: any){
+    this.programacaoService.getProgramacoesDoUsuarioLogado(id).then(dados => {
       console.log(dados);
       this.programacoes = dados;
     });
+  }
+
+  adicionarProgramacao(programacao: any){
+    this.programacoesSelecionadas.push(programacao);
+  }
+
+  showDialogAdd(){
+    this.displayAdd = true;
+    this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
   }
 
 }

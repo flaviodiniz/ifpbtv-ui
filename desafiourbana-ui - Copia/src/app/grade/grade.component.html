@@ -45,10 +45,59 @@
           <th>{{ g.titulo }}</th>
           <th>{{ g.ativa ? "Sim" : "Não" }}</th>
           <th>{{ g.exibindo ? "Sim" : "Não"}}</th>
-          <th></th>
+          <th>
+            <a pButton icon="fa-plus" class="ui-button-success" 
+            pTooltip="Adicionar programação" (click)="showDialogAdd(g.id)"></a>
+            <a pButton icon="fa-pencil" class="ui-button-success" 
+            pTooltip="Editar programação"></a>
+            <!-- No editar programação da grade, pode ter um btn pra excluir uma programação
+            selecionada -->
+            <a pButton icon="fa-file" class="ui-button-success" 
+            pTooltip="Visualizar lista de programação"></a>
+          </th>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- Programações do usuário -->
+
+  <p-dialog [visible]="displayAdd" [width]="800" [closable]="true" [positionTop]=20>
+  
+    <p-header style="color: green !important;">
+        Listagem de Programação
+    </p-header>
+    
+    <div>
+      <table id="customers">
+        <thead >
+          <tr>
+            <th colspan="4">Lista de Programações</th>
+            <th></th>
+          </tr>
+        </thead>
+        <thead class="thead-light">
+          <tr>
+            <th>Titulo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of programacoes">
+            <th>{{ p.titulo }}</th>
+            <th>
+              <a pButton icon="fa-plus" class="ui-button-success" 
+              pTooltip="Adicionar programação" (click)="showDialogAdd()"></a>
+              <a pButton icon="fa-pencil" class="ui-button-success" 
+              pTooltip="Editar programação"></a>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p-footer>
+        <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="displayAdd=false" label="Fechar"></button>
+    </p-footer>
+
+</p-dialog>
 
 </div>

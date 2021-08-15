@@ -36,7 +36,7 @@ export class ProgramacaoService {
       });
   }
 
-  getProgramacoesGrade(idGrade: any): Promise<any> {
+  getProgramacoesDaGradeDaTVSelecionada(idGrade: any): Promise<any> {
     return this.http.get(`${this.baseUrl}/programacao/listarProgramacoesGrade/${idGrade}`) 
       .toPromise()
       .then(response => { 
@@ -47,7 +47,7 @@ export class ProgramacaoService {
       });
   }
 
-  getProgramacoesParaGrade(idGrade: any): Promise<any> {
+  getProgramacoesDoUsuarioLogado(idGrade: any): Promise<any> {
     return this.http.get(`${this.baseUrl}/programacao/listarProgramacoesParaGrade/${idGrade}`) 
       .toPromise()
       .then(response => { 
