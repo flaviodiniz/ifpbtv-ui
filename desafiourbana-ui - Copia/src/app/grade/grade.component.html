@@ -8,7 +8,7 @@
 
   <div style="width: 100%;">
 
-    <div style="margin-left: 2%; width: 40%;">
+    <div style="margin-left: 2%; width: 30%;">
       <div class="ui-g-12 ui-md-9" style="color: green;">
           <label for="tv">TV</label>
       </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
   
-    <div style="float: right; width: 67%; margin-left: 0%; margin-top: 1%;">
+    <div style="float: right; width: 75%; margin-top: 0.7%;">
       <button pButton type="button" class="ui-button-success" label="Buscar grade"
       (click)="buscar()"></button>
     </div>  
@@ -43,8 +43,8 @@
       <tbody>
         <tr *ngFor="let g of grades">
           <th>{{ g.titulo }}</th>
-          <th>{{ g.ativa }}</th>
-          <th>{{ g.exibindo }}</th>
+          <th>{{ g.ativa ? "Sim" : "Não" }}</th>
+          <th>{{ g.exibindo ? "Sim" : "Não"}}</th>
           <th></th>
         </tr>
       </tbody>

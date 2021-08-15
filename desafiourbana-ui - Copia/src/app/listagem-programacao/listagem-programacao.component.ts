@@ -39,10 +39,10 @@ export class ListagemProgramacaoComponent implements OnInit {
   ngOnInit() {
     this.listarTipos();
     this.getProgramacoes();
+    
     this.spinner.show();
 
     setTimeout(() => {
-      /** spinner ends after 3 seconds */
       this.spinner.hide();
     }, 2000);
   }
@@ -69,9 +69,9 @@ export class ListagemProgramacaoComponent implements OnInit {
 
   getProgramacoes3(id: any) {
     this.programacaoService.getImagensDaProgramacao(id).then(dados => {
-      // console.log("Programação fetch mídias e uploads")
+      console.log("Programação fetch mídias e uploads")
       this.programacoes3 = dados;
-      // console.log(this.programacoes3[0][0]);
+     console.log(this.programacoes3);
     });
     this.display = true;
   }
@@ -120,5 +120,10 @@ export class ListagemProgramacaoComponent implements OnInit {
         window.location.reload();
       })
       .catch((erro: any) => console.log(erro));
+  }
+
+  limpar(){
+    this.programacao = null;
+    this.titulo = '';
   }
 }

@@ -1,144 +1,144 @@
 <div class="container">
     
-  <div style="text-align:center">
-      <h1 style="color: green;">
-          LISTA DE PROGRAMAÇÃO
-      </h1> 
-      <div style="margin: 30px; float: right;">
-        <button pButton type="button" label="Nova Programação" class="ui-button-success" (click)="goToTvNovo()" ></button>
+    <div style="text-align:center">
+        <h1 style="color: green;">
+            LISTA DE PROGRAMAÇÃO
+        </h1> 
+        <div style="margin: 30px; float: right;">
+          <button pButton type="button" label="Nova Programação" class="ui-button-success" (click)="goToTvNovo()" ></button>
+      </div>
     </div>
-  </div>
-
-  <form #f="ngForm" autocomplete="off" (ngSubmit)="getProgramacoes()">
-
-    <div style="margin-left: 0%; display: inline-block; margin-bottom: 1%; width: 100%; ">
-
-        <div style="margin: 2%;">
+  
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="getProgramacoes()">
+  
+      <div style="margin-left: 0%; display: inline-block; margin-bottom: 1%; width: 100%; ">
+  
+          <div style="margin: 2%;">
+              <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
+                  <label>Título</label>
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-fluid">
+                  <input pInputText type="text" name="local" class="campo" [(ngModel)]="titulo">
+              </div>
+          </div> 
+  
+          <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
             <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-                <label>Título</label>
+                <label for="tiposMidias">Tipo de Programação</label>
             </div>
             <div class="ui-g-12 ui-md-9 ui-fluid">
-                <input pInputText type="text" name="local" class="campo" [(ngModel)]="titulo">
+                <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione"
+                [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="programacao" ></p-dropdown>
             </div>
-        </div> 
-
-        <div class="p-formgroup-inline" style="margin-left: 2%; margin-top: 2%; margin-bottom: 2%;">
-          <div class="ui-g-12 ui-md-9 ui-fluid" style="color: green;">
-              <label for="tiposMidias">Tipo de Programação</label>
-          </div>
-          <div class="ui-g-12 ui-md-9 ui-fluid">
-              <p-dropdown [options]="tiposProgramacao" name="tipo" placeholder="Selecione"
-              [style]="{width: '30%', minWidth: '30%'}" [(ngModel)]="programacao" ></p-dropdown>
-          </div>
-      </div>
-
-    </div>                   
-
-    <div style="margin-left: 3%; display: inline-block; margin-bottom: 1%; ">
-    
-        <div style="display: inline-block;">
-            <button pButton type="submit" label="Pesquisar" class="ui-button-success"></button>
         </div>
-        <div style="display: inline-block;">
-            <button type="button" class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
-        </div>
-    </div>           
-        
-</form>
-
-    <ngx-spinner
-        bdColor="rgba(128, 255, 128, 0.0)"
-        size="medium"
-        color="#5cb85c"
-        type="line-scale-party"
-        fullscreen="false"
-        >
-    </ngx-spinner>  
-
-<!-- <div style="width: 99%;"> -->
-
-<p-dataTable [value]="programacoes" [paginator]="true" [rows]="3" [responsive]="true"
-    emptyMessage="Nenhuma programação encontrada" #tabela>
-        
-        <p-column field="titulo" header="Título"></p-column>
-        <p-column field="tipoProgramacao" header="Tipo"></p-column>
-        <p-column field="horarioInicio" header="H. Início"></p-column>
-        <p-column field="horarioFim" header="H. Fim"></p-column>
-        <p-column field="diaSemana" header="Dia"></p-column>
-        <p-column field="playlist.length" header="Qtd mídias"></p-column>
-        
-        <p-column styleClass="acoes" header="Mídia" >
+  
+      </div>                   
+  
+      <div style="margin-left: 3%; display: inline-block; margin-bottom: 1%; ">
+      
+          <div style="display: inline-block;">
+              <button pButton type="submit" label="Pesquisar" class="ui-button-success"></button>
+          </div>
+          <div style="display: inline-block;">
+              <button type="button" class="ui-button-secondary" pButton label="Limpar" (click)="limpar()" ></button>
+          </div>
+      </div>           
+          
+  </form>
+  
+      <ngx-spinner
+          bdColor="rgba(128, 255, 128, 0.0)"
+          size="medium"
+          color="#5cb85c"
+          type="line-scale-party"
+          fullscreen="false"
+          >
+      </ngx-spinner>  
+  
+  <!-- <div style="width: 99%;"> -->
+  
+  <p-dataTable [value]="programacoes" [paginator]="true" [rows]="3" [responsive]="true"
+      emptyMessage="Nenhuma programação encontrada" #tabela>
+          
+          <p-column field="titulo" header="Título"></p-column>
+          <p-column field="tipoProgramacao" header="Tipo"></p-column>
+          <p-column field="horarioInicio" header="H. Início"></p-column>
+          <p-column field="horarioFim" header="H. Fim"></p-column>
+          <p-column field="diaSemana" header="Dia"></p-column>
+          <p-column field="playlist.length" header="Qtd mídias"></p-column>
+          
+          <p-column styleClass="acoes" header="Mídia" >
+              <ng-template let-prog="rowData" pTemplate="body">
+                  <a pButton icon="fa-file" class="ui-button-success" 
+                  (click)="getProgramacoes3(prog.id)"
+                  pTooltip="Visualizar arquivos de mídia da programação selecionada"></a>
+              </ng-template>
+          </p-column>
+          <p-column styleClass="acoes" header="Ações">
             <ng-template let-prog="rowData" pTemplate="body">
-                <a pButton icon="fa-file" class="ui-button-success" 
-                (click)="getProgramacoes3(prog.id)"
-                pTooltip="Visualizar arquivos de mídia da programação selecionada"></a>
+              <a pButton icon="fa-pencil" class="ui-button-success" 
+              [routerLink]="['/programacao', prog.id]"
+              pTooltip="Atualizar dados da programãção selecionada"></a>
+              <button pButton icon="fa-trash" class="ui-button-success" type="button"
+                  (click)="confirmarExclusao(prog)"
+                  pTooltip="Excluir programação selecionada"></button>
             </ng-template>
         </p-column>
-        <p-column styleClass="acoes" header="Ações">
-          <ng-template let-prog="rowData" pTemplate="body">
-            <a pButton icon="fa-pencil" class="ui-button-success" 
-            [routerLink]="['/programacao', prog.id]"
-            pTooltip="Atualizar dados da programãção selecionada"></a>
-            <button pButton icon="fa-trash" class="ui-button-success" type="button"
-                (click)="confirmarExclusao(prog)"
-                pTooltip="Excluir programação selecionada"></button>
-          </ng-template>
-      </p-column>
+        
+  </p-dataTable>
+  
+  <p-dialog [visible]="display" [width]="800" [closable]="true" [positionTop]=20>
+  
+      <p-header style="color: green !important;">
+          Mídias da Programação
+      </p-header>
       
-</p-dataTable>
-
-<p-dialog [visible]="display" [width]="800" [closable]="true" [positionTop]=20>
-
-    <p-header style="color: green !important;">
-        Mídias da Programação
-    </p-header>
-    
-    <p-dataList [value]="programacoes3" [paginator]="true" [rows]="1">
-        <p-header [style]="{'color': 'green'}">
-            Lista de Mídias
-        </p-header>
-        <ng-template let-mid pTemplate="item">
-            <div class="ui-g ui-fluid car-item">
-                
-                <div style="width: 35%; margin-left: 10%; margin-top: 5%;">
-                    <img [src]="recuperarImagem(mid[1])" height="100" width="120">
-                </div>
-    
-                <div style="float: left; width: 55%; padding-bottom: 5%;">
-                    <div class="ui-g">
-                        <div class="ui-g-2 ui-sm-6">Título:  </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid[5] }}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Chave:  </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid[7] }}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Tipo: </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid[8] }}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Tipo de mídia: </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid[3] }}</div>
-
-                        <div class="ui-g-2 ui-sm-6">Nome da mídia: </div>
-                        <div class="ui-g-10 ui-sm-6">{{ mid[4] }}</div>
-
-                        <div>
-                          <button pButton class="ui-button-success" type="button" label="Editar" (click)="adicionarMidia(mid)"></button>
-                        </div>
-                        <div>
-                            <button pButton class="ui-button-secondary" type="button" label="Excluir" (click)="adicionarMidia(mid)"></button>
+      <p-dataList [value]="programacoes3" [paginator]="true" [rows]="1">
+          <p-header [style]="{'color': 'green'}">
+              Lista de Mídias
+          </p-header>
+          <ng-template let-mid pTemplate="item">
+              <div class="ui-g ui-fluid car-item">
+                  
+                  <div style="width: 35%; margin-left: 10%; margin-top: 5%;">
+                      <img [src]="recuperarImagem(mid[1])" height="100" width="120">
+                  </div>
+      
+                  <div style="float: left; width: 55%; padding-bottom: 5%;">
+                      <div class="ui-g">
+                          <div class="ui-g-2 ui-sm-6">Título:  </div>
+                          <div class="ui-g-10 ui-sm-6">{{ mid[5] }}</div>
+  
+                          <div class="ui-g-2 ui-sm-6">Chave:  </div>
+                          <div class="ui-g-10 ui-sm-6">{{ mid[7] }}</div>
+  
+                          <div class="ui-g-2 ui-sm-6">Tipo: </div>
+                          <div class="ui-g-10 ui-sm-6">{{ mid[8] }}</div>
+  
+                          <div class="ui-g-2 ui-sm-6">Tipo de mídia: </div>
+                          <div class="ui-g-10 ui-sm-6">{{ mid[3] }}</div>
+  
+                          <div class="ui-g-2 ui-sm-6">Nome da mídia: </div>
+                          <div class="ui-g-10 ui-sm-6">{{ mid[4] }}</div>
+  
+                          <!-- <div>
+                            <button pButton class="ui-button-success" type="button" label="Editar" (click)="adicionarMidia(mid)"></button>
                           </div>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-    </p-dataList>
-
-    <p-footer>
-        <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="display=false" label="Fechar"></button>
-    </p-footer>
-
-</p-dialog>
-
-<!-- </div> -->
-
-</div>   
+                          <div>
+                              <button pButton class="ui-button-secondary" type="button" label="Excluir" (click)="adicionarMidia(mid)"></button>
+                            </div> -->
+                      </div>
+                  </div>
+              </div>
+          </ng-template>
+      </p-dataList>
+  
+      <p-footer>
+          <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="display=false" label="Fechar"></button>
+      </p-footer>
+  
+  </p-dialog>
+  
+  <!-- </div> -->
+  
+  </div>
