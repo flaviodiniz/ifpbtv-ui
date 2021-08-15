@@ -78,11 +78,15 @@ export class ProgramacaoComponent implements OnInit {
   }
 
   salvar(form: Form) {
-    if (this.editandoProgramacao) {
-      this.atualizarProgramacao(form);
-    } else {
-      console.log(this.programacao)
-      this.cadastrarProgramacao(form);
+    if(this.midiasSelecionadas.length === 0){
+      this.toasty.error("Adicione pelo menos uma mídia!");
+    }else{
+      if (this.editandoProgramacao) {
+        this.atualizarProgramacao(form);
+      } else {
+        console.log(this.programacao)
+        this.cadastrarProgramacao(form);
+      }
     }
   }
 
