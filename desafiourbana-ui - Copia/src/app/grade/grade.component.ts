@@ -62,15 +62,15 @@ export class GradeComponent implements OnInit {
     await this.getProgramacoesDaGradeDaTVSelecionada(this.tv);
   }
 
-  getProgramacoesDaGradeDaTVSelecionada(id: any){
+  getProgramacoesDaGradeDaTVSelecionada(idTV: any){
     this.programacaoService.getProgramacoesDaGradeDaTVSelecionada(this.tv).then(dados => {
     //  console.log(dados);
       this.grade.programacoes = dados;
     });
   }
 
-  getProgramacoesDoUsuarioLogado(id: any){
-    this.programacaoService.getProgramacoesDoUsuarioLogado(id).then(dados => {
+  getProgramacoesDoUsuarioLogado(idUsuario: any){
+    this.programacaoService.getProgramacoesDoUsuarioLogado(idUsuario).then(dados => {
       console.log(dados);
       this.programacoes = dados;
     });
