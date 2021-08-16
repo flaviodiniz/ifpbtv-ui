@@ -39,15 +39,17 @@ export class ProgramacaoComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.spinner.show();
     const id = this.route.snapshot.params['id'];
 
     if(id){
       this.buscarPorId(id);
     }
-    this.listarTipos();
-    this.getMidias()
-    this.getMidiasSelecionadas();
+    await this.listarTipos();
+    await this.getMidias()
+    await this.getMidiasSelecionadas();
+    this.spinner.hide();
   }
 
   get editandoProgramacao() {

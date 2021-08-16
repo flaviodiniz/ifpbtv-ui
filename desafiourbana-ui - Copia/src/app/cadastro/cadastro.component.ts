@@ -25,13 +25,18 @@ export class CadastroComponent implements OnInit {
     private usuarioService: UsuarioService,
   ) { }
 
-  ngOnInit(): void {
-    this.getPerfis();
+  async ngOnInit(): Promise<void> {
+    this.spinner.show();
+    await this.getPerfis();
     const idUsuario = this.route.snapshot.params['id'];
 
     if (idUsuario) {
       this.buscarUsuario(idUsuario);
     }
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getPerfis() {

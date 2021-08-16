@@ -5,6 +5,7 @@ import { GradeService } from 'app/services/grade.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { TvService } from 'app/services/tv.service';
 import { ToastyService } from 'ng2-toasty';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-grade',
@@ -24,17 +25,21 @@ export class GradeComponent implements OnInit {
   gradeDeProgramacao: GradeDeProgramacao;
 
   constructor(
-    private auth: AuthService,
-    private programacaoService: ProgramacaoService,  
+    private auth: AuthService, 
     private toasty: ToastyService,
+    private programacaoService: ProgramacaoService, 
+    private spinner: NgxSpinnerService, 
     private tvService : TvService,
     private gradeService: GradeService
   ) { }
 
-  ngOnInit() {
-    this.getTvs();
-    this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
-    console.log(this.tvs);
+  async ngOnInit() {
+    this.spinner.show();
+    await this.getTvs();
+    await this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getTvs() {
