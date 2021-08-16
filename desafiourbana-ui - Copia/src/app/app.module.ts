@@ -53,6 +53,7 @@ import { ProgramacaoComponent } from './programacao/programacao.component';
 import { GradeComponent } from './grade/grade.component';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { GradeService } from './services/grade.service';
 
 export function authHttpServiceFactory(auth: AuthService, http: Http, options: RequestOptions) {
   const config = new AuthConfig({
@@ -109,7 +110,7 @@ export function authHttpServiceFactory(auth: AuthService, http: Http, options: R
   ],
   providers: [ConfirmationService, 
     ErroHandlerService, AuthService, JwtHelper, AuthGuard, LogoutService, 
-    MidiaService, TvService, UsuarioService, ProgramacaoService,
+    MidiaService, TvService, UsuarioService, ProgramacaoService, GradeService,
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,

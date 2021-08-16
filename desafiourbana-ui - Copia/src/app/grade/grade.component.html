@@ -25,6 +25,7 @@
 
   </div>
 
+  <!-- Tabela da grade -->
   <div>
     <table id="customers">
       <thead >
@@ -46,14 +47,14 @@
           <th>{{ g.ativa ? "Sim" : "Não" }}</th>
           <th>{{ g.exibindo ? "Sim" : "Não"}}</th>
           <th>
-            <a pButton icon="fa-plus" class="ui-button-success" 
-            pTooltip="Adicionar programação" (click)="showDialogAdd(g.id)"></a>
-            <a pButton icon="fa-pencil" class="ui-button-success" 
-            pTooltip="Editar programação"></a>
-            <!-- No editar programação da grade, pode ter um btn pra excluir uma programação
-            selecionada -->
-            <a pButton icon="fa-file" class="ui-button-success" 
-            pTooltip="Visualizar lista de programação"></a>
+            <button pButton icon="fa-plus" class="ui-button-success" type="button"
+            pTooltip="Adicionar programação a grade" (click)="showDialogAdd(g.id)"></button>
+
+            <button pButton icon="fa-check" class="ui-button-success" type="button"
+              pTooltip="Salvar grade de programação" (click)="atualizarGrade(g)"
+              [disabled]="programacoesSelecionadas.length === 0">
+            </button>
+
           </th>
         </tr>
       </tbody>
@@ -61,7 +62,6 @@
   </div>
 
   <!-- Programações do usuário -->
-
   <p-dialog [visible]="displayAdd" [width]="800" [closable]="true" [positionTop]=20>
   
     <p-header style="color: green !important;">
@@ -72,13 +72,15 @@
       <table id="customers">
         <thead >
           <tr>
-            <th colspan="4">Lista de Programações</th>
+            <th colspan="2">Lista de Programações</th>
             <th></th>
           </tr>
         </thead>
         <thead class="thead-light">
           <tr>
             <th>Titulo</th>
+            <th>Operações</th>
+            <th>Mídias</th>
           </tr>
         </thead>
         <tbody>
@@ -86,9 +88,15 @@
             <th>{{ p.titulo }}</th>
             <th>
               <a pButton icon="fa-plus" class="ui-button-success" 
-              pTooltip="Adicionar programação" (click)="showDialogAdd()"></a>
-              <a pButton icon="fa-pencil" class="ui-button-success" 
-              pTooltip="Editar programação"></a>
+              pTooltip="Adicionar programação" (click)="adicionarProgramacao(p)"></a>
+
+              <a pButton icon="fa-trash" class="ui-button-success" 
+              pTooltip="Remover programação"></a>
+
+            </th>
+            <th>
+              <a pButton icon="fa-file" class="ui-button-success" 
+              pTooltip="Visualizar mídia da programação"></a>
             </th>
           </tr>
         </tbody>
@@ -98,6 +106,34 @@
         <button type="button" class="ui-button-success" pButton icon="fa-close" (click)="displayAdd=false" label="Fechar"></button>
     </p-footer>
 
-</p-dialog>
+  </p-dialog>
+
+  <!-- Listagem de programações selecionadas da grade da tv -->
+  <div>
+    <table id="customers">
+      <thead >
+        <tr>
+          <th colspan="2">Lista de programações da TV Selecionada</th>
+        </tr>
+      </thead>
+      <thead class="thead-light">
+        <tr>
+          <th>Titulo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let g of programacoesSelecionadas">
+          <th>{{ g.titulo }}</th>
+          <th>          
+            <button pButton icon="fa-trash" class="ui-button-success" type="button"
+              pTooltip="Deletar programação da grade" (click)="exluirProgramacaoDaGrade(g.id)"
+              [disabled]="programacoesSelecionadas.length === 0">
+            </button>
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>

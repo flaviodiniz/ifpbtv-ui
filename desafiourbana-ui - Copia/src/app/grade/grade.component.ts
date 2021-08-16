@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TV } from 'app/models/model';
+import { GradeDeProgramacao, TV } from 'app/models/model';
 import { AuthService } from 'app/seguranca/auth.service';
+import { GradeService } from 'app/services/grade.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { TvService } from 'app/services/tv.service';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-grade',
@@ -19,11 +21,14 @@ export class GradeComponent implements OnInit {
   programacoes = [];
   programacoesSelecionadas = [];
   displayAdd: boolean = false;
+  gradeDeProgramacao: GradeDeProgramacao;
 
   constructor(
     private auth: AuthService,
     private programacaoService: ProgramacaoService,  
+    private toasty: ToastyService,
     private tvService : TvService,
+    private gradeService: GradeService
   ) { }
 
   ngOnInit() {
@@ -65,6 +70,7 @@ export class GradeComponent implements OnInit {
   getProgramacoesDaGradeDaTVSelecionada(idTV: any){
     this.programacaoService.getProgramacoesDaGradeDaTVSelecionada(this.tv).then(dados => {
     //  console.log(dados);
+    this.programacoesSelecionadas = dados;
       this.grade.programacoes = dados;
     });
   }
@@ -77,12 +83,28 @@ export class GradeComponent implements OnInit {
   }
 
   adicionarProgramacao(programacao: any){
+    this.toasty.success("Programação selecionada!");
     this.programacoesSelecionadas.push(programacao);
   }
 
   showDialogAdd(){
     this.displayAdd = true;
     this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
+  }
+
+  atualizarGrade(grade: any){
+    this.gradeDeProgramacao = grade;
+    this.gradeDeProgramacao.programacoes = this.programacoesSelecionadas;
+    this.gradeService.atualizarGrade(this.gradeDeProgramacao).then(dados => {
+      this.toasty.success("Grade salva com sucesso!");
+    })
+  }
+
+  exluirProgramacaoDaGrade(id: any){
+    this.programacoesSelecionadas.splice(this.programacoesSelecionadas.indexOf(id), 1);
+    this.gradeDeProgramacao.programacoes = this.programacoesSelecionadas;
+    this.atualizarGrade(this.gradeDeProgramacao);
+    this.toasty.success("Programação excluída com sucesso!");
   }
 
 }
