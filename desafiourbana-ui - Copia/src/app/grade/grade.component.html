@@ -72,32 +72,34 @@
       <table id="customers">
         <thead >
           <tr>
-            <th colspan="2">Lista de Programações</th>
-            <th></th>
+            <th colspan="3">Lista de Programações</th>
+            <!-- <th></th> -->
           </tr>
         </thead>
         <thead class="thead-light">
           <tr>
             <th>Titulo</th>
+            <th>Data de Exibição</th>
             <th>Operações</th>
-            <th>Mídias</th>
+            <!-- <th>Mídias</th> -->
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let p of programacoes">
             <th>{{ p.titulo }}</th>
+            <th>{{ p.dataExibicao | date:'dd/MM/yyyy'}}</th>
             <th>
               <a pButton icon="fa-plus" class="ui-button-success" 
               pTooltip="Adicionar programação" (click)="adicionarProgramacao(p)"></a>
 
-              <a pButton icon="fa-trash" class="ui-button-success" 
-              pTooltip="Remover programação"></a>
+              <!-- <a pButton icon="fa-trash" class="ui-button-success" 
+              pTooltip="Remover programação"></a> -->
 
             </th>
-            <th>
+            <!-- <th>
               <a pButton icon="fa-file" class="ui-button-success" 
               pTooltip="Visualizar mídia da programação"></a>
-            </th>
+            </th> -->
           </tr>
         </tbody>
       </table>
