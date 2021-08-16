@@ -3,6 +3,7 @@ import { TV } from 'app/models/model';
 import { AuthService } from 'app/seguranca/auth.service';
 import { ProgramacaoService } from 'app/services/programacao.service';
 import { TvService } from 'app/services/tv.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-grade',
@@ -22,14 +23,18 @@ export class GradeComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private programacaoService: ProgramacaoService,  
+    private programacaoService: ProgramacaoService, 
+    private spinner: NgxSpinnerService, 
     private tvService : TvService,
   ) { }
 
-  ngOnInit() {
-    this.getTvs();
-    this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
-    console.log(this.tvs);
+  async ngOnInit() {
+    this.spinner.show();
+    await this.getTvs();
+    await this.getProgramacoesDoUsuarioLogado(this.auth.jwtPayload.id);
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getTvs() {

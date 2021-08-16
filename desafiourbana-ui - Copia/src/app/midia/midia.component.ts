@@ -40,6 +40,7 @@ export class MidiaComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
+    this.spinner.show();
     this.chave = null;
     this.tipoMidia = null;
     this.dpnibilidade = null;
@@ -51,6 +52,10 @@ export class MidiaComponent implements OnInit {
     if (id) {
       this.buscarMidia(id);
     }
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   buscarMidia(id: number) {

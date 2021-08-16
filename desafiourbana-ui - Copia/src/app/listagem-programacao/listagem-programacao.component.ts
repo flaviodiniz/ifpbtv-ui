@@ -41,7 +41,9 @@ export class ListagemProgramacaoComponent implements OnInit {
     await this.listarTipos();
     await this.getProgramacoes();
     
-    this.spinner.hide();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
 
   getProgramacoes() {

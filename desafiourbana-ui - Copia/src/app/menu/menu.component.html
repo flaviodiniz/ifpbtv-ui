@@ -2,13 +2,13 @@
 
     <ul class="navbar-menu">   
         <img class="logo" src="../../assets/img/logo.png" id="link">   
-        <li class="navbar-item" style="margin-top: 15px" routerLinkActive="link-selecionado"><i class="pi pi-align-justify"> Programação do dia</i></li>
-        <li class="navbar-item" routerLink="/grade" routerLinkActive="link-selecionado"><i class="pi pi-align-justify"></i> Grades</li>
-        <li class="navbar-item" routerLink="/tvs" routerLinkActive="link-selecionado"><i class="pi pi-id-card"> TVs</i></li>
+        <!-- <li class="navbar-item" style="margin-top: 15px" routerLinkActive="link-selecionado"><i class="pi pi-align-justify"> Programação do dia</i></li> -->
+        <li class="navbar-item" style="margin-top: 15px" routerLink="/grade" routerLinkActive="link-selecionado"><i class="pi pi-align-justify"></i> Grades</li>
+        <li class="navbar-item" *ngIf="usuarioComum == true" routerLink="/tvs" routerLinkActive="link-selecionado"><i class="pi pi-id-card"> TVs</i></li>
         <li class="navbar-item" routerLink="/programacao" routerLinkActive="link-selecionado"><i class="pi pi-youtube"> Programação</i></li>
         <li class="navbar-item" routerLink="/midias" routerLinkActive="link-selecionado"><i class="pi pi-file"> Mídias</i></li>
-        <li class="navbar-item" routerLink="/usuarios" routerLinkActive="link-selecionado"><i class="pi pi-users"></i> Usuários</li>
+        <li class="navbar-item" *ngIf="usuarioComum == true" routerLink="/usuarios" routerLinkActive="link-selecionado"><i class="pi pi-users"></i> Usuários</li>
         <li class="navbar-item" (click)="logout()"><i class="pi pi-sign-out"></i> Sair</li>
     </ul>
-    <!-- FALTA COLOCAR OS GUARDS -->
+    <!-- FALTA COLOCAR OS GUARDS *ngIf="usuarioComum == true"-->
 </nav>

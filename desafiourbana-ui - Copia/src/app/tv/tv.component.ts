@@ -24,14 +24,16 @@ export class TvComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit(): void {
-    this.getPerfis();
-
+  async ngOnInit(): Promise<void> {
+    this.spinner.show();
+    await this.getPerfis();
     const idTv = this.route.snapshot.params['id'];
 
     if (idTv) {
       this.buscarTv(idTv);
     }
+
+    this.spinner.hide();
   }
 
   buscarTv(codigo: number) {

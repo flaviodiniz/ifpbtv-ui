@@ -25,10 +25,10 @@ export class ListagemTvComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) { }
 
-  ngOnInit(): void {
-    this.getTvs();
+  async ngOnInit(): Promise<void> {
     this.spinner.show();
-
+    await this.getTvs();
+   
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);
